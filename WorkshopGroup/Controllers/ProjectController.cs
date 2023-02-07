@@ -63,5 +63,70 @@ namespace WorkshopGroup.Controllers
       }
       return View(projectVM);
     }
+
+    public async Task<IActionResult> Edit(int id)
+    {
+      var project = await _projectRepository.GetByIdAsync(id);
+      if (project == null) return View("Error");
+      var projectVM = new EditProjectViewModel
+      {
+        Title = project.Title,
+        Description = project.Description,
+        AddressId = project.AddressId,
+        Address = project.Address,
+        URL = project.Image,
+        ProjectCategory = project.ProjectCategory
+      };
+      return View(projectVM);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, EditProjectViewModel projectVM)
+    {
+      if (!ModelState.IsValid)
+      {
+        ModelState.AddModelError("", "Failed to edit club");
+        return View("Edit", projectVM);
+      }
+      var userProject = await _projectRepository.GetByIdAsyncNoTracking(id);
+
+      if (userProject != null)
+      {
+        try
+        {
+          var fi = new FileInfo(userProject.Image);
+          var publicId = Path.GetFileNameWithoutExtension(fi.Name);
+          await _photoService.DeletePhotoAsync(publicId);
+
+         // await _photoService.DeletePhotoAsync(userProject.Image);
+        }
+        catch (Exception ex)
+        {
+          ModelState.AddModelError("", "Could not delete photo.");
+          return View(projectVM);
+        }
+        var photoResult = await _photoService.AddPhotoAsync(projectVM.Image);
+
+        var project = new Project
+        {
+          Id = id,
+          Title = projectVM.Title,
+          Description = projectVM.Description,
+          Image = photoResult.Url.ToString(),
+          AddressId = projectVM.AddressId,
+          Address = projectVM.Address,
+        };
+
+        _projectRepository.Update(project);
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        return View(projectVM);
+      }
+    }
+
+
+
   }
 }

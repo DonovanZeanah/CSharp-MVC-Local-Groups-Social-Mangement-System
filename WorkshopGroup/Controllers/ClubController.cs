@@ -66,8 +66,8 @@ namespace WorkshopGroup.Controllers
       else
       {
         ModelState.AddModelError("", "Photo upload failed");
-      }
       return View(clubVM);
+      }
     }
 
     public async Task<IActionResult> Edit(int id)
@@ -94,37 +94,43 @@ namespace WorkshopGroup.Controllers
         ModelState.AddModelError("", "Failed to edit club");
         return View("Edit", clubVM);
       }
-      var userClub = await _clubRepository.GetByIdAsync(id);
+      var userClub = await _clubRepository.GetByIdAsyncNoTracking(id);
 
       if (userClub != null)
+      {
         try
         {
-          await _photoService.DeletePhotoAsync(userClub.Image);
+          var fi = new FileInfo(userClub.Image);
+          var publicId = Path.GetFileNameWithoutExtension(fi.Name);
+          await _photoService.DeletePhotoAsync(publicId);
+         // await _photoService.DeletePhotoAsync(userClub.Image);
         }
         catch (Exception ex)
         {
           ModelState.AddModelError("", "Could not delete photo.");
-          return View(clubVM)
+          return View(clubVM);
         }
-      var photoResult = await _photoService.AddPhotoAsync(clubVM);
+        var photoResult = await _photoService.AddPhotoAsync(clubVM.Image);
 
-      var club = new Club
+        var club = new Club
+        {
+          Id = id,
+          Title = clubVM.Title,
+          Description = clubVM.Description,
+          Image = photoResult.Url.ToString(),
+          AddressId = clubVM.AddressId,
+          Address = clubVM.Address,
+        };
+
+        _clubRepository.Update(club);
+        return RedirectToAction("Index");
+      }
+      else
       {
-        Id = id,
-        Title = clubVM.Title,
-        Description = clubVM.Description,
-        Image = photoResult.Url.ToString(),
-        AddressId = clubVM.AddressId,
-        Address = clubVM.Address,
-      };
-
-      _clubRepository.Update(club);
-      return RedirectToAction("Index");
-    }
-    
+        return View(clubVM);
+      }
     }
 
-    
   }
 }
 

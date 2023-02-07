@@ -3,7 +3,7 @@ using WorkshopGroup.Models;
 
 namespace WorkshopGroup.ViewModels
 {
-  public class EditClubViewModel
+  public class EditProjectViewModel
   {
     public int Id { get; set; }
     public string Title { get; set; }
@@ -12,6 +12,6 @@ namespace WorkshopGroup.ViewModels
     public string? URL { get; set; }
     public int? AddressId { get; set; }
     public Address? Address { get; set; }
-    public ClubCategory ClubCategory{ get; set; }
+    public ProjectCategory ProjectCategory { get; set; }
   }
 }

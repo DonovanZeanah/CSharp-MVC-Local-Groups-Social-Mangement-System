@@ -1,6 +1,6 @@
 ﻿@using WorkshopGroup.Data.Enum;
 @using WorkshopGroup.ViewModels;
-@model EditClubViewModel
+@model EditProjectViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -9,7 +9,7 @@
 
 
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
-    @*//added//<input...>*@
+  @*//added//<input...>*@
     <input type="hidden" value="AddressId" id="AddressId" />
     <div class="form-group">
         <label asp-for="Title">Title</label>
@@ -22,11 +22,11 @@
         <span asp-validation-for="Description" class="text-danger">    </span>
     </div>
     <div class="form-group">
-        <label asp-for="ClubCategory">ClubCategory</label>
-        <select asp-for="ClubCategory" asp-items="@Html.GetEnumSelectList<ClubCategory>()">
+        <label asp-for="ProjectCategory">ProjectCategory</label>
+        <select asp-for="ProjectCategory" asp-items="@Html.GetEnumSelectList<ProjectCategory>()">
             <option>--Select--</option>
         </select>
-        <span asp-validation-for="ClubCategory" class="text-danger">    </span>
+        <span asp-validation-for="ProjectCategory" class="text-danger">    </span>
     </div>
     <div class="form-group">
         <label asp-for="Address.Street">    Street</label></label>

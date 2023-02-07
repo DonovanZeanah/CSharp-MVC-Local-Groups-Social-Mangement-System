@@ -40,6 +40,10 @@ namespace WorkshopGroup.Repository
     {
       return await _context.Projects.Include(i => i.Address).FirstOrDefaultAsync();
     }
+    public async Task<Project> GetByIdAsyncNoTracking(int id)
+    {
+      return await _context.Projects.Include(i => i.Address).AsNoTracking().FirstOrDefaultAsync();
+    }
 
     public bool Save()
     {
