@@ -131,6 +131,13 @@ namespace WorkshopGroup.Controllers
       }
     }
 
+    public async Task<IActionResult> Delete(int id)
+    {
+      var clubDetails = await _clubRepository.GetByIdAsync(id);
+      if (clubDetails == null) return View("Error");
+      return View(clubDetails);
+    }
+
   }
 }
 

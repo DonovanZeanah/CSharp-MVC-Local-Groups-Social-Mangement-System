@@ -14,9 +14,9 @@ namespace WorkshopGroup.Controllers
     private readonly IProjectRepository _projectRepository;
     private readonly IPhotoService _photoService;
 
-    public ProjectController(IProjectRepository projectorRepository, IPhotoService photoService)
+    public ProjectController(IProjectRepository projectRepository, IPhotoService photoService)
     {
-      _projectRepository = projectorRepository;
+      _projectRepository = projectRepository;
       _photoService = photoService;
     }
     public async Task<IActionResult> Index()
@@ -86,14 +86,14 @@ namespace WorkshopGroup.Controllers
       if (!ModelState.IsValid)
       {
         ModelState.AddModelError("", "Failed to edit club");
-       // return View("Edit", projectVM);
-        return View(projectVM);
+        return View("Edit", projectVM);
+        // return View(projectVM);
       }
       var userProject = await _projectRepository.GetByIdAsyncNoTracking(id);
 
-      if (userProject == null)
+      if (userProject != null)
       {
-        return View("Error");
+        /*return View("Error");
       }
 
       var photoResult = await _photoService.AddPhotoAsync(projectVM.Image);
@@ -127,9 +127,9 @@ namespace WorkshopGroup.Controllers
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
-      var clubDetails = await _projectRepository.GetByIdAsync(id);
-      if (clubDetails == null) return View("Error");
-      return View(clubDetails);
+      var projectDetails = await _projectRepository.GetByIdAsync(id);
+      if (projectDetails == null) return View("Error");
+      return View(projectDetails);
     }
 
     [HttpPost, ActionName("Delete")]
@@ -151,43 +151,45 @@ namespace WorkshopGroup.Controllers
       return RedirectToAction("Index");
     }
   }
-}
-/* try
- {
-   var fi = new FileInfo(userProject.Image);
-   var publicId = Path.GetFileNameWithoutExtension(fi.Name);
-   await _photoService.DeletePhotoAsync(publicId);
-
-  // await _photoService.DeletePhotoAsync(userProject.Image);
- }
- catch (Exception ex)
- {
-   ModelState.AddModelError("", "Could not delete photo.");
-   return View(projectVM);
- }
- var photoResult = await _photoService.AddPhotoAsync(projectVM.Image);
-
- var project = new Project
- {
-   Id = id,
-   Title = projectVM.Title,
-   Description = projectVM.Description,
-   Image = photoResult.Url.ToString(),
-   AddressId = projectVM.AddressId,
-   Address = projectVM.Address,
- };
-
- _projectRepository.Update(project);
- return RedirectToAction("Index");
-}
-else
-{
- return View(projectVM);
-}
-
-}
+}*/
 
 
-}
-}
+        try
+        {
+          /*var fi = new FileInfo(userProject.Image);
+          var publicId = Path.GetFileNameWithoutExtension(fi.Name);
+          await _photoService.DeletePhotoAsync(publicId);
 */
+           await _photoService.DeletePhotoAsync(userProject.Image);
+        }
+        catch (Exception ex)
+        {
+          ModelState.AddModelError("", "Could not delete photo.");
+          return View(projectVM);
+        }
+        var photoResult = await _photoService.AddPhotoAsync(projectVM.Image);
+
+        var project = new Project
+        {
+          Id = id,
+          Title = projectVM.Title,
+          Description = projectVM.Description,
+          Image = photoResult.Url.ToString(),
+          AddressId = projectVM.AddressId,
+          Address = projectVM.Address,
+        };
+
+        _projectRepository.Update(project);
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        return View(projectVM);
+      }
+
+    }
+
+
+  }
+}
+
