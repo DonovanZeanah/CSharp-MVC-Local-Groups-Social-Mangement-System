@@ -189,6 +189,23 @@ namespace WorkshopGroup.Controllers
 
     }
 
+    public async Task<IActionResult> Delete(int id)
+    {
+      var clubDetails = await _projectRepository.GetByIdAsync(id);
+      if (clubDetails == null) return View("Error");
+      return View(clubDetails);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public async Task<IActionResult> DeleteProject(int id)
+    {
+      var projectDetails = await _projectRepository.GetByIdAsync(id);
+      if (projectDetails == null) return View("Error");
+
+      _projectRepository.Delete(projectDetails);
+      return RedirectToAction("Index");
+    }
+
 
   }
 }

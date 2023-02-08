@@ -38,7 +38,7 @@ namespace WorkshopGroup.Repository
 
     public async Task<Project> GetByIdAsync(int id)
     {
-      return await _context.Projects.Include(i => i.Address).FirstOrDefaultAsync();
+      return await _context.Projects.Include(i => i.Address).FirstOrDefaultAsync(x => x.Id == id);
     }
     public async Task<Project> GetByIdAsyncNoTracking(int id)
     {
