@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,9 @@ using WorkshopGroup.Models;
 
 namespace WorkshopGroup.Data
 {
-  public class ApplicationDbContext : DbContext
+  //   public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, etc>
+
+  public class ApplicationDbContext : IdentityDbContext<AppUser>
   {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
     {
