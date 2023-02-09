@@ -9,7 +9,7 @@ namespace WorkshopGroup.ViewModels
 
     [Display(Name = "Email Address")]
     [Required(ErrorMessage = "Email required.. so I can spam your inbox until it's un-usable.")]
-    public string Email { get; set; }
+    public string EmailAddress { get; set; }
     [Required]
     [DataType(DataType.Password)]
     public string Password { get; set; }

@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using WorkshopGroup.Data.Enum;
 using WorkshopGroup.Models;
-using System.Diagnostics;
-using WorkshopGroup.Data.Enum;
+
 using WorkshopGroup.Data;
-using WorkshopGroup.Models;
 
 namespace RunGroopWebApp.Data
 {

@@ -32,7 +32,7 @@ namespace WorkshopGroup.Controllers
     {
       if (!ModelState.IsValid) return View(loginViewModel);
 
-      var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
+      var user = await _userManager.FindByEmailAsync(loginViewModel.EmailAddress);
       if (user != null)
       {
         var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
@@ -41,7 +41,7 @@ namespace WorkshopGroup.Controllers
           var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
           if (result.Succeeded)
           {
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Project");
           }
         }
 
