@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using RunGroopWebApp.Data;
 using WorkshopGroup.Data;
 using WorkshopGroup.Helpers;
 using WorkshopGroup.Interfaces;
