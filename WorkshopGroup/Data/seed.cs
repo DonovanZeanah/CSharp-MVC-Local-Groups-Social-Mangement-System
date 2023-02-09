@@ -4,7 +4,7 @@ using WorkshopGroup.Models;
 
 using WorkshopGroup.Data;
 
-namespace RunGroopWebApp.Data
+namespace WorkshopGroup.Data
 {
   public class Seed
   {
