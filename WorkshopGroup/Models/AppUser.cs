@@ -15,6 +15,9 @@ namespace WorkshopGroup.Models
     public string Id { get; set; }*/
 
     public double? points { get; set; }
+    public string? ProfileImageUrl { get; set; }
+    public string? City { get; set; }
+    public string? State { get; set; }
     public Address? Address { get; set; }
     //[ForeignKey(nameof(Address))]
     [ForeignKey("Address")]
