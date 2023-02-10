@@ -18,7 +18,7 @@ namespace WorkshopGroup.Models
     public Address? Address { get; set; }
     //[ForeignKey(nameof(Address))]
     [ForeignKey("Address")]
-    public int AddressId { get; set; }
+    public int? AddressId { get; set; }
     public ICollection<Club>? Clubs { get; set; }
     public ICollection<Project>? Projects { get; set; }
 
