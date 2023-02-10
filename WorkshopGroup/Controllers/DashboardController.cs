@@ -22,11 +22,11 @@ namespace WorkshopGroup.Controllers
 
     public async Task<IActionResult> Index()
     {
-      var userRaces = await _dashboardRespository.GetAllUserRaces();
+      var userProjects = await _dashboardRespository.GetAllUserProjects();
       var userClubs = await _dashboardRespository.GetAllUserClubs();
       var dashboardViewModel = new DashboardViewModel()
       {
-        Races = userRaces,
+        Projects = userProjects,
         Clubs = userClubs
       };
       return View(dashboardViewModel);

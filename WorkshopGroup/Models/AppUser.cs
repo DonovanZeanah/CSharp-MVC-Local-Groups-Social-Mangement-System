@@ -14,7 +14,8 @@ namespace WorkshopGroup.Models
 /*    [Key]
     public string Id { get; set; }*/
 
-    public double? points { get; set; }
+    public double? Points { get; set; }
+    public int? Mileage { get; set; }
     public string? ProfileImageUrl { get; set; }
     public string? City { get; set; }
     public string? State { get; set; }

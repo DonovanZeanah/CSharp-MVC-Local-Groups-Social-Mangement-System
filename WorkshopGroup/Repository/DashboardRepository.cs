@@ -22,11 +22,11 @@ namespace WorkshopGroup.Repository
             return userClubs.ToList();
         }
 
-        public async Task<List<Race>> GetAllUserRaces()
+        public async Task<List<Project>> GetAllUserProjects()
         {
             var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
-            var userRaces = _context.Races.Where(r => r.AppUser.Id == curUser);
-            return userRaces.ToList();
+            var userProjects = _context.Projects.Where(p => p.AppUser.Id == curUser);
+            return userProjects.ToList();
         }
         public async Task<AppUser> GetUserById(string id)
         {

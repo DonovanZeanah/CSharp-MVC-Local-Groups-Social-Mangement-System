@@ -75,7 +75,7 @@ namespace WorkshopGroup.Data
                     });
           context.SaveChanges();
         }
-        //Races
+        //Projects
         if (!context.Projects.Any())
         {
           context.Projects.AddRange(new List<Project>()
@@ -97,7 +97,7 @@ namespace WorkshopGroup.Data
                         {
                             Title = "proj 2",
                             Image = "https://www.eatthis.com/wp-content/uploads/sites/4/2020/05/running.jpg?quality=82&strip=1&resize=640%2C360",
-                            Description = "This is the description of the first race",
+                            Description = "This is the description of the first project",
                             ProjectCategory = ProjectCategory.StationUpgrade,
                             AddressId = 5,
                             Address = new Address()

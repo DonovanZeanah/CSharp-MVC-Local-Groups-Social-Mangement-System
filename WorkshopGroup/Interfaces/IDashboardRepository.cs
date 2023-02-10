@@ -4,7 +4,7 @@ namespace WorkshopGroup.Interfaces
 {
     public interface IDashboardRepository
     {
-        Task<List<Project>> GetAllUserRaces();
+        Task<List<Project>> GetAllUserProjects();
         Task<List<Club>> GetAllUserClubs();
         Task<AppUser> GetUserById(string id);
         Task<AppUser> GetByIdNoTracking(string id);

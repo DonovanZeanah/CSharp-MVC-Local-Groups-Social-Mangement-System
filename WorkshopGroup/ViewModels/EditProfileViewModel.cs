@@ -2,7 +2,7 @@
 {
     public class EditProfileViewModel
     {
-        public int? Pace { get; set; }
+        public int? Points { get; set; }
         public int? Mileage { get; set; }
         public string? ProfileImageUrl { get; set; }
         public string? City { get; set; }

@@ -77,7 +77,7 @@
                                           <span class="h6 mb-0">Create Club</span>
                                       </a>
                                       <a class="dropdown-item" asp-area="" asp-controller="Project" asp-action="Create">
-                                          <span class="h6 mb-0">Create Race</span>
+                                          <span class="h6 mb-0">Create Project</span>
                                       </a>
                                       <a class="dropdown-item" asp-area="" asp-controller="Dashboard" asp-action="Index">
                                           <span class="h6 mb-0">Dashboard</span>
@@ -117,7 +117,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-3">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="logo-text">RunGroop</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="logo-text">WorkShopGroups</a>
                     <p class="text-muted">
                         &copy; 2022 RunGroop
                         <br />
@@ -126,7 +126,7 @@
                 </div>
                 <!--end of col-->
                 <div class="col-12 col-md-9">
-                    <span class="h5">The world's first online platform for runners</span>
+                    <span class="h5">The world's first Real-Life MMORPG</span>
                     <div class="row no-gutters">
                         <div class="col-6 col-lg-3">
                             <h6>Navigate</h6>
@@ -141,11 +141,11 @@
                                 </li>
                                 <li>
                                     <a asp-area="" asp-controller="Club"
-                                       asp-action="Index">Find Running Clubs Near You</a>
+                                       asp-action="Index">Find WorkShop Clubs Near You</a>
                                 </li>
                                 <li>
-                                    <a asp-area="" asp-controller="Race"
-                                       asp-action="Index">Find Running Races Near You</a>
+                                    <a asp-area="" asp-controller="Project"
+                                       asp-action="Index">Find Projects Near You</a>
                                 </li>
                             </ul>
                         </div>
@@ -155,11 +155,11 @@
                             <ul class="list-unstyled">
                                 <li>
                                     <a asp-area="" asp-controller="Club"
-                                       asp-action="RunningClubsByStateDirectory">Find Running Clubs By State</a>
+                                       asp-action="WorkShopClubsByStateDirectory">Find WorkShop Clubs By State</a>
                                 </li>
                                 <li>
                                     <a asp-area="" asp-controller="Club"
-                                       asp-action="RunningClubsByStateForCityDirectory">Find Running Clubs By City</a>
+                                       asp-action="WorkshopClubsByStateForCityDirectory">Find Workshop Clubs By City</a>
                                 </li>
                             </ul>
                         </div>
@@ -168,10 +168,10 @@
                             <h6>Race Directory</h6>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="#">Find Running Races By City</a>
+                                    <a href="#">Find Projects By City</a>
                                 </li>
                                 <li>
-                                    <a href="#">Find Running Races By State</a>
+                                    <a href="#">Find Projects By State</a>
                                 </li>
                             </ul>
                         </div>

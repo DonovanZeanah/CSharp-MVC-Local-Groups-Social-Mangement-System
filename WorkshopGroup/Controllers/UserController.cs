@@ -32,7 +32,7 @@ namespace WorkshopGroup.Controllers
         var userViewModel = new UserViewModel()
         {
           Id = user.Id,
-          Pace = user.Pace,
+          Points = (int?)user.Points,
           City = user.City,
           State = user.State,
           Mileage = user.Mileage,
@@ -56,7 +56,7 @@ namespace WorkshopGroup.Controllers
       var userDetailViewModel = new UserDetailViewModel()
       {
         Id = user.Id,
-        Pace = user.Pace,
+        Points = (int?)user.Points,
         City = user.City,
         State = user.State,
         Mileage = user.Mileage,
@@ -81,7 +81,7 @@ namespace WorkshopGroup.Controllers
       {
         City = user.City,
         State = user.State,
-        Pace = user.Pace,
+        Points = (int?)user.Points,
         Mileage = user.Mileage,
         ProfileImageUrl = user.ProfileImageUrl,
       };
@@ -130,7 +130,7 @@ namespace WorkshopGroup.Controllers
 
       user.City = editVM.City;
       user.State = editVM.State;
-      user.Pace = editVM.Pace;
+      user.Points = editVM.Points;
       user.Mileage = editVM.Mileage;
 
       await _userManager.UpdateAsync(user);
