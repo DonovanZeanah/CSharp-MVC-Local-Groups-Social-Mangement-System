@@ -16,15 +16,15 @@
                                         <div class="media-body">
                                             <span class="h6 mb-0">@user.UserName</span>
                                         </div>
-                                        <p class="card-text">@user.Mileage</p>
-                                        <p class="card-text">@user.Points</p>
+                                        <p class="card-text">Mileage: @user.Mileage</p>
+                                        <p class="card-text">Points: @user.Points</p>
                                     </div>
                                 </th>
                                 <td>
                                     <a class="btn btn-outline-primary" asp-controller="User" asp-action="Detail" asp-route-id="@user.Id">
                                         View Profile
                                     </a>
-                                </td>
+                               
 
                                 @{
                                     var mileage = user.Mileage == null ? "?" : user.Mileage.ToString();
@@ -32,6 +32,14 @@
                                 }
                                 <td>@mileage mile at @points Pph</td>
                                 <td><i class="icon-location"></i> @user.Location</td>
+                              </td>
+                              @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                              {
+                                  <td>
+                                      <a  asp-controller="Club" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm">Edit</a>
+                                      <a  asp-controller="Club" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm">Delete</a>
+                                  </td>
+                              })
                             </tr>
                             <tr class="table-divider">
                                 <th></th>
