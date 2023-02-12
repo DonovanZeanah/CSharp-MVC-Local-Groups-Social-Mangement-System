@@ -12,13 +12,15 @@ namespace WorkshopGroup.Controllers
     //Now Bringing in through Repository// private readonly ApplicationDbContext _context;
     private readonly IClubRepository _clubRepository;
     private readonly IPhotoService _photoService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     //original// public ClubController(ApplicationDbContext context)
-    public ClubController(IClubRepository clubRepository, IPhotoService photoService)
+    public ClubController(IClubRepository clubRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
     {
       //Now Bringing in through Repository// _context = context;
       _clubRepository = clubRepository;
       _photoService = photoService;
+      _httpContextAccessor = httpContextAccessor;
     }
 
 
@@ -39,7 +41,12 @@ namespace WorkshopGroup.Controllers
     }
     public IActionResult Create()
     {
-      return View();
+      var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+      var createClubViewModel = new CreateClubViewModel { AppUserId = curUserId };
+      
+        //UserId = curUserId
+      
+      return View(createClubViewModel);
     }
 
     [HttpPost]
@@ -53,6 +60,7 @@ namespace WorkshopGroup.Controllers
           Title = clubVM.Title,
           Description = clubVM.Description,
           Image = result.Url.ToString(),
+          AppUserId = clubVM.AppUserId,
           Address = new Address
           {
             Street = clubVM.Address.Street,

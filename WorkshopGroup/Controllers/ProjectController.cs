@@ -13,11 +13,13 @@ namespace WorkshopGroup.Controllers
   {
     private readonly IProjectRepository _projectRepository;
     private readonly IPhotoService _photoService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public ProjectController(IProjectRepository projectRepository, IPhotoService photoService)
+    public ProjectController(IProjectRepository projectRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
     {
       _projectRepository = projectRepository;
       _photoService = photoService;
+      _httpContextAccessor = httpContextAccessor;
     }
     public async Task<IActionResult> Index()
     {
@@ -33,7 +35,9 @@ namespace WorkshopGroup.Controllers
 
     public IActionResult Create()
     {
-      return View();
+      var curUserId = _httpContextAccessor.HttpContext?.User.GetUserId();
+      var createProjectViewModel = new CreateProjectViewModel { AppUserId = curUserId };
+      return View(createProjectViewModel);
     }
 
     [HttpPost]
@@ -47,6 +51,7 @@ namespace WorkshopGroup.Controllers
           Title = projectVM.Title,
           Description = projectVM.Description,
           Image = result.Url.ToString(),
+          AppUserId = projectVM.AppUserId,
           Address = new Address
           {
             Street = projectVM.Address.Street,

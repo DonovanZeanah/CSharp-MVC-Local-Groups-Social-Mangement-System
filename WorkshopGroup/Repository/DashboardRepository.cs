@@ -25,7 +25,7 @@ namespace WorkshopGroup.Repository
         public async Task<List<Project>> GetAllUserProjects()
         {
             var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
-            var userProjects = _context.Projects.Where(p => p.AppUser.Id == curUser);
+            var userProjects = _context.Projects.Where(r => r.AppUser.Id == curUser);
             return userProjects.ToList();
         }
         public async Task<AppUser> GetUserById(string id)
