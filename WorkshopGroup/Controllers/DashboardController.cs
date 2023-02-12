@@ -13,11 +13,14 @@ namespace WorkshopGroup.Controllers
   {
     private readonly IDashboardRepository _dashboardRespository;
     private readonly IPhotoService _photoService;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public DashboardController(IDashboardRepository dashboardRespository, IPhotoService photoService)
+    public DashboardController(IDashboardRepository dashboardRespository, IHttpContextAccessor httpContextAccessor, IPhotoService photoService)
     {
       _dashboardRespository = dashboardRespository;
+      _httpContextAccessor = httpContextAccessor;
       _photoService = photoService;
+
     }
 
     public async Task<IActionResult> Index()
@@ -30,6 +33,11 @@ namespace WorkshopGroup.Controllers
         Clubs = userClubs
       };
       return View(dashboardViewModel);
+    }
+
+    public async Task<IActionResult> EditUserProfile()
+    {
+      return View();
     }
   }
 }
