@@ -11,9 +11,9 @@ namespace WorkshopGroup.Models
 {
   public class AppUser : IdentityUser
   {
-/*    [Key]
+   /* [Key]
     public string Id { get; set; }*/
-
+   // key is string (guid) after IdentityUser implimented
     public double? Points { get; set; }
     public int? Mileage { get; set; }
     public string? ProfileImageUrl { get; set; }
@@ -25,6 +25,7 @@ namespace WorkshopGroup.Models
     public int? AddressId { get; set; }
     public ICollection<Club>? Clubs { get; set; }
     public ICollection<Project>? Projects { get; set; }
+    public ICollection<Skill> Skills { get; set; } //= new List<Skill>();
 
   }
 }

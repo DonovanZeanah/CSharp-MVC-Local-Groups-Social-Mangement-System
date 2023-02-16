@@ -29,5 +29,7 @@ namespace WorkshopGroup.Models
     [ForeignKey("AppUser")]
     public string? AppUserId { get; set; }
     public AppUser? AppUser { get; set; }
+
+    public List<Tool> Tools { get; set; } = new List<Tool>();
   }
 }

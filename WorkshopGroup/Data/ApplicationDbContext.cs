@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CloudinaryDotNet;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,9 @@ namespace WorkshopGroup.Data
     public DbSet<Address> Addresses { get; set; }
     public DbSet<State> States { get; set; }
     public DbSet<City> Cities { get; set; }
+    public DbSet<Skill> Skills { get; set; }
+    public DbSet<Tool> Tools { get; set; }
 
-
+   
   }
 }

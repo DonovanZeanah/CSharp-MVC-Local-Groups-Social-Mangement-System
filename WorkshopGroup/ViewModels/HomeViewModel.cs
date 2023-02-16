@@ -1,6 +1,6 @@
 ﻿using WorkshopGroup.Models;
 
-namespace RunGroopWebApp.ViewModels
+namespace WorkshopGroup.ViewModels
 {
     public class HomeViewModel
     {
