@@ -30,9 +30,14 @@ namespace WorkshopGroup.Repository
       return await _context.Skills.ToListAsync();
     }
 
-    public async Task<IEnumerable<Skill>> GetAllSkillsByUser(string AppUserId)
+    public Task<IEnumerable<Skill>> GetAllSkillsByUser(string AppUserId)
     {
-      return await _context.Skills.Where(a => a.AppUserId )
+      throw new NotImplementedException();
+    }
+
+    public async Task<IEnumerable<Skill>> GetAllSkillsByUserId(string AppUserId)
+    {
+      throw new NotImplementedException();
     }
 
     public Task<Skill> GetByIdAsync(int id)
