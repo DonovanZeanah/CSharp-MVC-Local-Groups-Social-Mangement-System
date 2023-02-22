@@ -12,8 +12,8 @@ using WorkshopGroup.Data;
 namespace WorkshopGroup.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230216184153_AppUserSkillsToolsMaterials")]
-    partial class AppUserSkillsToolsMaterials
+    [Migration("20230222125405_reAddedIdtoAppUserAddINT")]
+    partial class reAddedIdtoAppUserAddINT
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,31 +24,161 @@ namespace WorkshopGroup.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ContactWebModels.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("ContactWebModels.Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gym")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SupplyOwnerOwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplyOwnerSupplyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("SupplyOwnerSupplyId", "SupplyOwnerOwnerId");
+
+                    b.ToTable("Owner");
+                });
+
+            modelBuilder.Entity("ContactWebModels.Supply", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SupplyCategoryCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplyCategorySupplyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplyOwnerOwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplyOwnerSupplyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupplyCategorySupplyId", "SupplyCategoryCategoryId");
+
+                    b.HasIndex("SupplyOwnerSupplyId", "SupplyOwnerOwnerId");
+
+                    b.ToTable("Supplies");
+                });
+
+            modelBuilder.Entity("ContactWebModels.SupplyCategory", b =>
+                {
+                    b.Property<int>("SupplyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplyCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SupplyId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SupplyCategories");
+                });
+
+            modelBuilder.Entity("ContactWebModels.SupplyOwner", b =>
+                {
+                    b.Property<int>("SupplyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplyOwnerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SupplyId", "OwnerId");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("SupplyOwners");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -66,14 +196,11 @@ namespace WorkshopGroup.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -91,14 +218,11 @@ namespace WorkshopGroup.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("UserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -109,18 +233,15 @@ namespace WorkshopGroup.Migrations
                     b.Property<string>("ProviderKey")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.HasKey("LoginProvider", "ProviderKey", "UserId");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("UserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -133,9 +254,7 @@ namespace WorkshopGroup.Migrations
 
                     b.HasKey("UserId", "RoleId");
 
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -154,7 +273,7 @@ namespace WorkshopGroup.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("UserTokens");
                 });
 
             modelBuilder.Entity("ProjectTool", b =>
@@ -212,12 +331,10 @@ namespace WorkshopGroup.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -232,12 +349,10 @@ namespace WorkshopGroup.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -263,23 +378,42 @@ namespace WorkshopGroup.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                    b.ToTable("Users");
+                });
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+            modelBuilder.Entity("WorkshopGroup.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SupplyCategoryCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SupplyCategorySupplyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupplyCategorySupplyId", "SupplyCategoryCategoryId");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("WorkshopGroup.Models.City", b =>
@@ -419,6 +553,80 @@ namespace WorkshopGroup.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("WorkshopGroup.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReviewerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ReviewerId");
+
+                    b.HasIndex("SupplyId");
+
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("WorkshopGroup.Models.Reviewer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReviewId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ReviewId");
+
+                    b.ToTable("Reviewers");
+                });
+
             modelBuilder.Entity("WorkshopGroup.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
@@ -493,55 +701,68 @@ namespace WorkshopGroup.Migrations
                     b.ToTable("Tools");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("ContactWebModels.Owner", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
+                    b.HasOne("ContactWebModels.Country", "Country")
+                        .WithMany("Owners")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ContactWebModels.SupplyOwner", null)
+                        .WithMany("Owners")
+                        .HasForeignKey("SupplyOwnerSupplyId", "SupplyOwnerOwnerId");
+
+                    b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("ContactWebModels.Supply", b =>
                 {
-                    b.HasOne("WorkshopGroup.Models.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("ContactWebModels.SupplyCategory", null)
+                        .WithMany("Supplies")
+                        .HasForeignKey("SupplyCategorySupplyId", "SupplyCategoryCategoryId");
+
+                    b.HasOne("ContactWebModels.SupplyOwner", null)
+                        .WithMany("Supplies")
+                        .HasForeignKey("SupplyOwnerSupplyId", "SupplyOwnerOwnerId");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("ContactWebModels.SupplyCategory", b =>
                 {
-                    b.HasOne("WorkshopGroup.Models.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                    b.HasOne("WorkshopGroup.Models.Category", "Category")
+                        .WithMany("SupplyCategories")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ContactWebModels.Supply", "Supply")
+                        .WithMany("SupplyCategories")
+                        .HasForeignKey("SupplyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Supply");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("ContactWebModels.SupplyOwner", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
+                    b.HasOne("ContactWebModels.Owner", "Owner")
+                        .WithMany("SupplyOwners")
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WorkshopGroup.Models.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                    b.HasOne("ContactWebModels.Supply", "Supply")
+                        .WithMany("SupplyOwners")
+                        .HasForeignKey("SupplyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("WorkshopGroup.Models.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Owner");
+
+                    b.Navigation("Supply");
                 });
 
             modelBuilder.Entity("ProjectTool", b =>
@@ -566,6 +787,13 @@ namespace WorkshopGroup.Migrations
                         .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("WorkshopGroup.Models.Category", b =>
+                {
+                    b.HasOne("ContactWebModels.SupplyCategory", null)
+                        .WithMany("Categories")
+                        .HasForeignKey("SupplyCategorySupplyId", "SupplyCategoryCategoryId");
                 });
 
             modelBuilder.Entity("WorkshopGroup.Models.Club", b =>
@@ -607,6 +835,42 @@ namespace WorkshopGroup.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("WorkshopGroup.Models.Review", b =>
+                {
+                    b.HasOne("WorkshopGroup.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("WorkshopGroup.Models.Reviewer", "Reviewer")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ReviewerId");
+
+                    b.HasOne("ContactWebModels.Supply", "Supply")
+                        .WithMany("Reviews")
+                        .HasForeignKey("SupplyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Reviewer");
+
+                    b.Navigation("Supply");
+                });
+
+            modelBuilder.Entity("WorkshopGroup.Models.Reviewer", b =>
+                {
+                    b.HasOne("WorkshopGroup.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("WorkshopGroup.Models.Review", null)
+                        .WithMany("Reviewers")
+                        .HasForeignKey("ReviewId");
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("WorkshopGroup.Models.Skill", b =>
                 {
                     b.HasOne("WorkshopGroup.Models.AppUser", "AppUser")
@@ -625,6 +889,39 @@ namespace WorkshopGroup.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("ContactWebModels.Country", b =>
+                {
+                    b.Navigation("Owners");
+                });
+
+            modelBuilder.Entity("ContactWebModels.Owner", b =>
+                {
+                    b.Navigation("SupplyOwners");
+                });
+
+            modelBuilder.Entity("ContactWebModels.Supply", b =>
+                {
+                    b.Navigation("Reviews");
+
+                    b.Navigation("SupplyCategories");
+
+                    b.Navigation("SupplyOwners");
+                });
+
+            modelBuilder.Entity("ContactWebModels.SupplyCategory", b =>
+                {
+                    b.Navigation("Categories");
+
+                    b.Navigation("Supplies");
+                });
+
+            modelBuilder.Entity("ContactWebModels.SupplyOwner", b =>
+                {
+                    b.Navigation("Owners");
+
+                    b.Navigation("Supplies");
+                });
+
             modelBuilder.Entity("WorkshopGroup.Models.AppUser", b =>
                 {
                     b.Navigation("Clubs");
@@ -632,6 +929,21 @@ namespace WorkshopGroup.Migrations
                     b.Navigation("Projects");
 
                     b.Navigation("Skills");
+                });
+
+            modelBuilder.Entity("WorkshopGroup.Models.Category", b =>
+                {
+                    b.Navigation("SupplyCategories");
+                });
+
+            modelBuilder.Entity("WorkshopGroup.Models.Review", b =>
+                {
+                    b.Navigation("Reviewers");
+                });
+
+            modelBuilder.Entity("WorkshopGroup.Models.Reviewer", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("WorkshopGroup.Models.Tool", b =>

@@ -11,9 +11,12 @@ namespace WorkshopGroup.Models
 {
   public class AppUser : IdentityUser
   {
-   /* [Key]
-    public string Id { get; set; }*/
-   // key is string (guid) after IdentityUser implimented
+    //public string Id { get; set; }
+    // key is string (guid) after IdentityUser implimented
+    //[Key]
+    //public string Id { get; set; }
+
+    public string? UserId { get; set; }
     public double? Points { get; set; }
     public int? Mileage { get; set; }
     public string? ProfileImageUrl { get; set; }

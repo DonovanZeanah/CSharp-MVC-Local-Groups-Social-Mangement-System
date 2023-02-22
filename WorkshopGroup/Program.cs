@@ -13,7 +13,13 @@ using WorkshopGroup.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<seed>();
+builder.Services.AddTransient<seedAgain>();
+
+
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 
@@ -22,6 +28,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddScoped<ILocationService, LocationService>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
+
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 var tokenURL = builder.Services.Configure<IPInfo>(builder.Configuration.GetSection("IPInfoSettings"));
 
@@ -29,6 +36,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+
 builder.Services.AddIdentity<AppUser, IdentityRole>()
   .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddMemoryCache();
@@ -40,14 +49,18 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 
 
-
 var app = builder.Build();
+//seed.SeedData(app);
+//seedAgain.SeedData(app);
 
-if (args.Length == 1 && args[0].ToLower() == "seeddata")
-{
-  await Seed.SeedUsersAndRolesAsync(app);
-  //Seed.SeedData(app);
-}
+
+// if (args.Length == 1 && args[0].ToLower() == "seeddata")
+//{
+  //await seed.SeedUsersAndRolesAsync(app);
+  //await seedAgain.SeedUsersAndRolesAsync(app);
+
+  
+//}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
