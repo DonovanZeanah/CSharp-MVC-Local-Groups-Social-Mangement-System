@@ -14,8 +14,7 @@
 input[id="registerLocation"]::placeholder {
     font-family: Roboto, 'Font Awesome\ 5 Pro', sans-serif;
     font-weight: 600;
-}  
-
+}
 
 #datalistOptions {
     border: 1px #ccc;
@@ -23,18 +22,18 @@ input[id="registerLocation"]::placeholder {
     list-style-type: none;
 }
 
-#datalistOptions ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+    #datalistOptions ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
 
-#datalistOptions ul li {
-    padding: 5px 0;
-    list-style-type: none;
-}
+        #datalistOptions ul li {
+            padding: 5px 0;
+            list-style-type: none;
+        }
 
-#datalistOptions ul li:hover {
-    background: #ffffff;
-    list-style-type: none;
-}
+            #datalistOptions ul li:hover {
+                background: #ffffff;
+                list-style-type: none;
+            }
