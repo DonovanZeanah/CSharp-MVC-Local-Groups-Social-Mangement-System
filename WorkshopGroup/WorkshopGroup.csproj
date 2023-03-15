@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="KingdomAngular\.vscode\**" />
+    <Compile Remove="KingdomAngular\node_modules\**" />
+    <Content Remove="KingdomAngular\.vscode\**" />
+    <Content Remove="KingdomAngular\node_modules\**" />
+    <EmbeddedResource Remove="KingdomAngular\.vscode\**" />
+    <EmbeddedResource Remove="KingdomAngular\node_modules\**" />
+    <None Remove="KingdomAngular\.vscode\**" />
+    <None Remove="KingdomAngular\node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.20.0" />
     <PackageReference Include="Emgu.CV.runtime.windows.cuda" Version="4.4.0.4099" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0-*" />
@@ -30,6 +41,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="ClientApp\" />
   </ItemGroup>
 
 </Project>

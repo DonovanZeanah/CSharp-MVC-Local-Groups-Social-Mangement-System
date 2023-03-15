@@ -12,20 +12,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Workshop Groups</title>
+    <title>@ViewData["Title"] - Hobby Groups</title>
     <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+    @*<link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/entypo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/socicon.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/RunGroopWebApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RunGroopWebApp.styles.css" asp-append-version="true" />*@
     <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
+
+    <!-- From Angular -->
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="/node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="/node_modules/zone.js/dist/zone.js"></script>
+    <script src="/node_modules/systemjs/dist/system.src.js"></script>
+
+    <script src="~/systemjs.config.js"></script>
+    <script>
+      System.import('app/main.js').catch(function(err){ console.error(err); });
+    </script>
 </head>
 <body>
     <div class="navbar-container">
         <div class="bg-light navbar-light" data-sticky="top">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index" id="logo-text">WorkshopGroup</a>
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index" id="logo-text">Kingdom</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="icon-menu h4"></i>
                     </button>
@@ -120,16 +133,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-3">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="logo-text">WorkShopGroups</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" id="logo-text">Kingdom</a>
                     <p class="text-muted">
-                        &copy; 2022 RunGroop
+                        &copy; 2023 Kingdom 
                         <br />
                         <br />
                     </p>
                 </div>
                 <!--end of col-->
                 <div class="col-12 col-md-9">
-                    <span class="h5">The world's first Real-Life MMORPG</span>
+                    <span class="h5">Kingdom - the un-metaverse. The world's first Real-Life MMORPG</span>
                     <div class="row no-gutters">
                         <div class="col-6 col-lg-3">
                             <h6>Navigate</h6>
