@@ -2,6 +2,9 @@
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 WorkshopGroup/wwwroot/* linguist-vendored
+clientAPI/* linguist-vendored
+WorkshopGroup/app/* linguist-vendored
+/* linguist-vendored
 
 * text=auto
 
