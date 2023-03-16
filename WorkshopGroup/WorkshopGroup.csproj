@@ -8,14 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="KingdomAngular\.vscode\**" />
-    <Compile Remove="KingdomAngular\node_modules\**" />
-    <Content Remove="KingdomAngular\.vscode\**" />
-    <Content Remove="KingdomAngular\node_modules\**" />
-    <EmbeddedResource Remove="KingdomAngular\.vscode\**" />
-    <EmbeddedResource Remove="KingdomAngular\node_modules\**" />
-    <None Remove="KingdomAngular\.vscode\**" />
-    <None Remove="KingdomAngular\node_modules\**" />
+    <Compile Remove="ClientApp\**" />
+    <Compile Remove="KingdomAngular\**" />
+    <Content Remove="ClientApp\**" />
+    <Content Remove="KingdomAngular\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
+    <EmbeddedResource Remove="KingdomAngular\**" />
+    <None Remove="ClientApp\**" />
+    <None Remove="KingdomAngular\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,7 +41,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="ClientApp\" />
   </ItemGroup>
 
 </Project>
