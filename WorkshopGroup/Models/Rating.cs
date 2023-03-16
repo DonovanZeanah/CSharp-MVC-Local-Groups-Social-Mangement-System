@@ -1,5 +1,6 @@
 ﻿namespace WorkshopGroup.Models
 {
+    // Models/Rating.cs
     public class Rating
     {
         public int Id { get; set; }
