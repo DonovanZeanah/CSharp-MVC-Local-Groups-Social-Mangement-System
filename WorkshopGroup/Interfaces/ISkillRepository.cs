@@ -6,13 +6,13 @@ namespace WorkshopGroup.Interfaces
     // Repositories/ISkillRepository.cs
     public interface ISkillRepository
     {
-        Task<IEnumerable<Skill>> GetSkills();
-        Task<Skill> GetSkill(int id);
-        Task<Skill> CreateSkill(Skill skill);
-        Task UpdateSkill(Skill skill);
-        Task DeleteSkill(int id);
-        Task<Rating> CreateRating(int skillId, Rating rating);
-        Task<IEnumerable<Rating>> GetRatings(int skillId);
+        Task<IEnumerable<Skill>> GetSkillsAsync();
+        Task<Skill> GetSkillAsync(int id);
+        Task<Skill> CreateSkillAsync(Skill skill);
+        Task UpdateSkillAsync(Skill skill);
+        Task DeleteSkillAsync(int id);
+        Task<Rating> CreateRatingAsync(int skillId, Rating rating);
+        Task<IEnumerable<Rating>> GetRatingsAsync(int skillId);
     }
 }
  /* public interface ISkillRepository

@@ -2,8 +2,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using RunGroopWebApp.Services;
 using System.Configuration;
+using System.Reflection;
 using WorkshopGroup.Data;
 using WorkshopGroup.Helpers;
 using WorkshopGroup.Interfaces;
@@ -58,10 +60,32 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 });
 */
 
+// Register the Swagger generator
+/*builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API Title", Version = "v1" });
+});*/
 
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API Title", Version = "v1" });
+
+    // Set the XML comments file path
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 
+// Enable Swagger middleware to serve generated Swagger as a JSON endpoint
+app.UseSwagger();
+
+// Enable Swagger UI middleware to serve Swagger UI at /swagger
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API Title v1");
+});
 
 
 

@@ -19,7 +19,11 @@ namespace WorkshopGroup.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<Skill>> GetSkills()
+        public Task<Skill> GetSkillAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<IEnumerable<Skill>> GetSkillsAsync()
         {
             return await _context.Skills.Include(s => s.Ratings).ToListAsync();
         }
@@ -29,20 +33,20 @@ namespace WorkshopGroup.Repository
             return await _context.Skills.Include(s => s.Ratings).FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public async Task<Skill> CreateSkill(Skill skill)
+        public async Task<Skill> CreateSkillAsync(Skill skill)
         {
             _context.Skills.Add(skill);
             await _context.SaveChangesAsync();
             return skill;
         }
 
-        public async Task UpdateSkill(Skill skill)
+        public async Task UpdateSkillAsync(Skill skill)
         {
             _context.Entry(skill).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteSkill(int id)
+        public async Task DeleteSkillAsync(int id)
         {
             var skill = await _context.Skills.FindAsync(id);
             if (skill != null)
@@ -52,7 +56,7 @@ namespace WorkshopGroup.Repository
             }
         }
 
-        public async Task<Rating> CreateRating(int skillId, Rating rating)
+        public async Task<Rating> CreateRatingAsync(int skillId, Rating rating)
         {
             var skill = await _context.Skills.FindAsync(skillId);
             if (skill != null)
@@ -65,10 +69,12 @@ namespace WorkshopGroup.Repository
             return null;
         }
 
-        public async Task<IEnumerable<Rating>> GetRatings(int skillId)
+        public async Task<IEnumerable<Rating>> GetRatingsAsync(int skillId)
         {
             return await _context.Ratings.Where(r => r.SkillId == skillId).ToListAsync();
         }
+
+        
     }
 }
 
