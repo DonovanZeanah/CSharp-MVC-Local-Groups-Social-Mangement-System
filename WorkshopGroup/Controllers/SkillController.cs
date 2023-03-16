@@ -1,6 +1,7 @@
 ﻿using Emgu.CV.Bioinspired;
 using Microsoft.AspNetCore.Mvc;
 using WorkshopGroup.Interfaces;
+using WorkshopGroup.Models;
 
 namespace WorkshopGroup.Controllers
 {

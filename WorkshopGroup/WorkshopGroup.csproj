@@ -8,12 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\**" />
     <Compile Remove="KingdomAngular\.vscode\**" />
     <Compile Remove="KingdomAngular\node_modules\**" />
+    <Content Remove="ClientApp\**" />
     <Content Remove="KingdomAngular\.vscode\**" />
     <Content Remove="KingdomAngular\node_modules\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
     <EmbeddedResource Remove="KingdomAngular\.vscode\**" />
     <EmbeddedResource Remove="KingdomAngular\node_modules\**" />
+    <None Remove="ClientApp\**" />
     <None Remove="KingdomAngular\.vscode\**" />
     <None Remove="KingdomAngular\node_modules\**" />
   </ItemGroup>
@@ -41,7 +45,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="ClientApp\" />
   </ItemGroup>
 
 </Project>
