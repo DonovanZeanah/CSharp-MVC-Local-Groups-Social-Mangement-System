@@ -5,9 +5,47 @@ using WorkshopGroup.Models;
 
 namespace WorkshopGroup.Repository
 {
-  public class SkillRepository : ISkillRepository
-  {
-    private readonly ApplicationDbContext _context;
+    public class SkillRepository : ISkillRepository
+    {
+
+        // Repositories/SkillRepository.cs
+        public Task<Rating> CreateRating(int skillId, Rating rating)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Skill> CreateSkill(Skill skill)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteSkill(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Rating>> GetRatings(int skillId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Skill> GetSkill(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Skill>> GetSkills()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateSkill(Skill skill)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
+   /* private readonly ApplicationDbContext _context;
     public SkillRepository(ApplicationDbContext context)
     {
       _context = context;
@@ -66,3 +104,4 @@ namespace WorkshopGroup.Repository
     }
   }
 }
+*/

@@ -1,8 +1,21 @@
-﻿using WorkshopGroup.Models;
+﻿using Emgu.CV.Bioinspired;
+using WorkshopGroup.Models;
 
 namespace WorkshopGroup.Interfaces
 {
-  public interface ISkillRepository
+    // Repositories/ISkillRepository.cs
+    public interface ISkillRepository
+    {
+        Task<IEnumerable<Skill>> GetSkills();
+        Task<Skill> GetSkill(int id);
+        Task<Skill> CreateSkill(Skill skill);
+        Task UpdateSkill(Skill skill);
+        Task DeleteSkill(int id);
+        Task<Rating> CreateRating(int skillId, Rating rating);
+        Task<IEnumerable<Rating>> GetRatings(int skillId);
+    }
+}
+ /* public interface ISkillRepository
   {
     Task<IEnumerable<Skill>> GetAll();
     Task<Skill> GetByIdAsync(int id);
@@ -17,3 +30,4 @@ namespace WorkshopGroup.Interfaces
     bool Save(Skill skill);
   }
 }
+*/

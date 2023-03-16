@@ -49,17 +49,27 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 
 
+
 var app = builder.Build();
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
 //seed.SeedData(app);
 //seedAgain.SeedData(app);
 
 
 // if (args.Length == 1 && args[0].ToLower() == "seeddata")
 //{
-  //await seed.SeedUsersAndRolesAsync(app);
-  //await seedAgain.SeedUsersAndRolesAsync(app);
+//await seed.SeedUsersAndRolesAsync(app);
+//await seedAgain.SeedUsersAndRolesAsync(app);
 
-  
+
 //}
 
 // Configure the HTTP request pipeline.
