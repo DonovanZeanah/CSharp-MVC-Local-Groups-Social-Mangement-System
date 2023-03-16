@@ -110,7 +110,34 @@ namespace WorkshopGroup.Data
                     });
           context.SaveChanges();
         }
-      }
+
+                if (!context.Skills.Any())
+                {
+                    context.Skills.AddRange(new List<Skill>()
+                    {
+                        new Skill()
+                        {
+                            //do not include Id here, it is an 'identity column' or in other words, it is set to auto-increment itself
+                            //and not be set explicitely
+                            Name = "Programming",
+                            Description = "This is the description of the programming skill",    
+                        },
+                        new Skill()
+                        {
+                            
+                            Name = "Woodworking",
+                            Description = "This is the description of the Woodworking skill",
+                        },
+                        new Skill()
+                        {
+                            
+                            Name = "Troubleshooting",
+                            Description = "This is the description of the Troubleshooting skill",
+                        }
+                    });
+                    context.SaveChanges();
+                }
+            }
     }
 
     public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)

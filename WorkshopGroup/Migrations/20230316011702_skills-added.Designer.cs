@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkshopGroup.Data;
 
@@ -11,9 +12,10 @@ using WorkshopGroup.Data;
 namespace WorkshopGroup.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230316011702_skills-added")]
+    partial class skillsadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -657,9 +659,6 @@ namespace WorkshopGroup.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -860,7 +859,7 @@ namespace WorkshopGroup.Migrations
             modelBuilder.Entity("WorkshopGroup.Models.Rating", b =>
                 {
                     b.HasOne("WorkshopGroup.Models.Skill", "Skill")
-                        .WithMany("Ratings")
+                        .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -977,11 +976,6 @@ namespace WorkshopGroup.Migrations
             modelBuilder.Entity("WorkshopGroup.Models.Reviewer", b =>
                 {
                     b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("WorkshopGroup.Models.Skill", b =>
-                {
-                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("WorkshopGroup.Models.Tool", b =>

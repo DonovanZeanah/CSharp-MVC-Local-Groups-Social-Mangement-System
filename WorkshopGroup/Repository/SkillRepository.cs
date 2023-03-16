@@ -8,100 +8,127 @@ namespace WorkshopGroup.Repository
     public class SkillRepository : ISkillRepository
     {
 
-        // Repositories/SkillRepository.cs
-        public Task<Rating> CreateRating(int skillId, Rating rating)
+
+
+
+
+        private readonly ApplicationDbContext _context;
+
+        public SkillRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Skill> CreateSkill(Skill skill)
+        public async Task<IEnumerable<Skill>> GetSkills()
         {
-            throw new NotImplementedException();
+            return await _context.Skills.Include(s => s.Ratings).ToListAsync();
         }
 
-        public Task DeleteSkill(int id)
+        public async Task<Skill> GetSkill(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Skills.Include(s => s.Ratings).FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public Task<IEnumerable<Rating>> GetRatings(int skillId)
+        public async Task<Skill> CreateSkill(Skill skill)
         {
-            throw new NotImplementedException();
+            _context.Skills.Add(skill);
+            await _context.SaveChangesAsync();
+            return skill;
         }
 
-        public Task<Skill> GetSkill(int id)
+        public async Task UpdateSkill(Skill skill)
         {
-            throw new NotImplementedException();
+            _context.Entry(skill).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Skill>> GetSkills()
+        public async Task DeleteSkill(int id)
         {
-            throw new NotImplementedException();
+            var skill = await _context.Skills.FindAsync(id);
+            if (skill != null)
+            {
+                _context.Skills.Remove(skill);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public Task UpdateSkill(Skill skill)
+        public async Task<Rating> CreateRating(int skillId, Rating rating)
         {
-            throw new NotImplementedException();
+            var skill = await _context.Skills.FindAsync(skillId);
+            if (skill != null)
+            {
+                rating.SkillId = skillId;
+                _context.Ratings.Add(rating);
+                await _context.SaveChangesAsync();
+                return rating;
+            }
+            return null;
+        }
+
+        public async Task<IEnumerable<Rating>> GetRatings(int skillId)
+        {
+            return await _context.Ratings.Where(r => r.SkillId == skillId).ToListAsync();
         }
     }
 }
-   /* private readonly ApplicationDbContext _context;
-    public SkillRepository(ApplicationDbContext context)
-    {
-      _context = context;
-    }
 
-    public bool Add(Skill skill)
-    {
-      _context.Add(skill);
-      return Save();
-    }
+/* private readonly ApplicationDbContext _context;
+ public SkillRepository(ApplicationDbContext context)
+ {
+   _context = context;
+ }
 
-    public bool Delete(Skill skill)
-    {
-      _context.Remove(skill);
-      return Save();
-    }
+ public bool Add(Skill skill)
+ {
+   _context.Add(skill);
+   return Save();
+ }
 
-    public async Task<IEnumerable<Skill>> GetAll()
-    {
-      return await _context.Skills.ToListAsync();
-    }
+ public bool Delete(Skill skill)
+ {
+   _context.Remove(skill);
+   return Save();
+ }
 
-    public Task<IEnumerable<Skill>> GetAllSkillsByUser(string AppUserId)
-    {
-      throw new NotImplementedException();
-    }
+ public async Task<IEnumerable<Skill>> GetAll()
+ {
+   return await _context.Skills.ToListAsync();
+ }
 
-    public async Task<IEnumerable<Skill>> GetAllSkillsByUserId(string AppUserId)
-    {
-      throw new NotImplementedException();
-    }
+ public Task<IEnumerable<Skill>> GetAllSkillsByUser(string AppUserId)
+ {
+   throw new NotImplementedException();
+ }
 
-    public Task<Skill> GetByIdAsync(int id)
-    {
-      throw new NotImplementedException();
-    }
+ public async Task<IEnumerable<Skill>> GetAllSkillsByUserId(string AppUserId)
+ {
+   throw new NotImplementedException();
+ }
 
-    public Task<Skill> GetByIdAsyncNoTracking(int id)
-    {
-      throw new NotImplementedException();
-    }
+ public Task<Skill> GetByIdAsync(int id)
+ {
+   throw new NotImplementedException();
+ }
 
-    public bool Save()
-    {
-      throw new NotImplementedException();
-    }
+ public Task<Skill> GetByIdAsyncNoTracking(int id)
+ {
+   throw new NotImplementedException();
+ }
 
-    public bool Save(Skill skill)
-    {
-      throw new NotImplementedException();
-    }
+ public bool Save()
+ {
+   throw new NotImplementedException();
+ }
 
-    public bool Update(Skill skill)
-    {
-      throw new NotImplementedException();
-    }
-  }
+ public bool Save(Skill skill)
+ {
+   throw new NotImplementedException();
+ }
+
+ public bool Update(Skill skill)
+ {
+   throw new NotImplementedException();
+ }
+}
 }
 */
