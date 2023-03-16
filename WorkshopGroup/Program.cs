@@ -91,7 +91,7 @@ app.UseEndpoints(endpoints =>
 
 
 
-seed.SeedData(app);
+//seed.SeedData(app);
 //seedAgain.SeedData(app);
 
 
