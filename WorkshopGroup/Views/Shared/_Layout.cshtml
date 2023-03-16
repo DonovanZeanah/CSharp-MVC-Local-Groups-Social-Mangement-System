@@ -19,8 +19,11 @@
     <link rel="stylesheet" href="~/css/socicon.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RunGroopWebApp.styles.css" asp-append-version="true" />*@
     <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
 
     <!-- From Angular -->
+    <script src="~/js/angularApp.js"></script>
 
     <!-- Polyfill(s) for older browsers -->
     <script src="/node_modules/core-js/client/shim.min.js"></script>
@@ -33,7 +36,7 @@
       System.import('app/main.js').catch(function(err){ console.error(err); });
     </script>
 </head>
-<body>
+<body ng-app="myAngularApp">
     <div class="navbar-container">
         <div class="bg-light navbar-light" data-sticky="top">
             <div class="container">
