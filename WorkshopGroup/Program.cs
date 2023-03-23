@@ -81,16 +81,17 @@ var app = builder.Build();
 // Enable Swagger middleware to serve generated Swagger as a JSON endpoint
 app.UseSwagger();
 
-// Enable Swagger UI middleware to serve Swagger UI at /swagger
-app.UseSwaggerUI(c =>
+app.UseEndpoints(endpoints =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API Title v1");
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 });
 
 
 
 
-seed.SeedData(app);
+//seed.SeedData(app);
 //seedAgain.SeedData(app);
 
 
@@ -127,6 +128,12 @@ app.UseEndpoints(endpoints =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 
 
