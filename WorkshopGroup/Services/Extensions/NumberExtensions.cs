@@ -1,4 +1,4 @@
-﻿namespace WorkshopGroup.Extensions
+﻿namespace WorkshopGroup.Services.Extensions
 {
     public static class NumberExtensions
     {

@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WorkshopGroup.ViewModels;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
+using WorkshopGroup.Services;
+using WorkshopGroup.Repository.Interfaces;
 
 namespace WorkshopGroup.Controllers
 {
-  public class UserController : Controller
+    public class UserController : Controller
   {
     private readonly IUserRepository _userRepository;
     private readonly UserManager<AppUser> _userManager;

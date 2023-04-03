@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WorkshopGroup.Data;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
+using WorkshopGroup.Repository.Interfaces;
 
 namespace WorkshopGroup.Repository
 {
-  public class ClubRepository : IClubRepository
+    public class ClubRepository : IClubRepository
   {
     private readonly ApplicationDbContext _context;
     public ClubRepository(ApplicationDbContext context){

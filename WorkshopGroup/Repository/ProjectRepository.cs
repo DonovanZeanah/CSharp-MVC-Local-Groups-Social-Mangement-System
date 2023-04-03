@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WorkshopGroup.Data;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
+using WorkshopGroup.Repository.Interfaces;
 
 namespace WorkshopGroup.Repository
 {
-  public class ProjectRepository : IProjectRepository
+    public class ProjectRepository : IProjectRepository
   {
     private readonly ApplicationDbContext _context;
 

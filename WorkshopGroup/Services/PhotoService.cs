@@ -1,12 +1,11 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
-using WorkshopGroup.Helpers;
-using WorkshopGroup.Interfaces;
+using WorkshopGroup.Services.Helpers;
 
 namespace WorkshopGroup.Services
 {
-  public class PhotoService : IPhotoService
+    public class PhotoService : IPhotoService
   {
     private readonly Cloudinary _cloudinary;
 

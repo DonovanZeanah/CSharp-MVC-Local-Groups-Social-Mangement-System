@@ -1,6 +1,6 @@
 ﻿using WorkshopGroup.Models;
 
-namespace WorkshopGroup.Interfaces
+namespace WorkshopGroup.Services
 {
     public interface ILocationService
     {

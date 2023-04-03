@@ -1,7 +1,9 @@
-﻿using WorkshopGroup.Data;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+using WorkshopGroup.Data;
 using WorkshopGroup.Models;
 
-namespace WorkshopGroup.Helpers
+namespace WorkshopGroup.Services.Helpers
 {
     public class DataSeeder
     {
@@ -27,9 +29,10 @@ namespace WorkshopGroup.Helpers
                     context.Skills.AddRange(skills);
                     await context.SaveChangesAsync();
                 }
+               
             }
         }
 
-        
+
     }
 }

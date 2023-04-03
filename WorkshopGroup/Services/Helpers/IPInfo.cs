@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WorkshopGroup.Helpers
+namespace WorkshopGroup.Services.Helpers
 {
     public class IPInfo
     {

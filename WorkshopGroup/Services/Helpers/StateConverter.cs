@@ -1,4 +1,4 @@
-﻿namespace RunGroopWebApp.Helpers
+﻿namespace WorkshopGroup.Services.Helpers
 {
     public static class StateConverter
     {

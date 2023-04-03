@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WorkshopGroup.Data;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
 using WorkshopGroup.Repository;
+using WorkshopGroup.Repository.Interfaces;
 using WorkshopGroup.Services;
 using WorkshopGroup.ViewModels;
 
 namespace WorkshopGroup.Controllers
 {
-  public class ProjectController : Controller
+    public class ProjectController : Controller
   {
     private readonly IProjectRepository _projectRepository;
     private readonly IPhotoService _photoService;

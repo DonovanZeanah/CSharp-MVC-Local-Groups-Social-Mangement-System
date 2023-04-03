@@ -7,11 +7,12 @@ using RunGroopWebApp.Services;
 using System.Configuration;
 using System.Reflection;
 using WorkshopGroup.Data;
-using WorkshopGroup.Helpers;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
 using WorkshopGroup.Repository;
+using WorkshopGroup.Repository.Interfaces;
 using WorkshopGroup.Services;
+using WorkshopGroup.Services.Extensions;
+using WorkshopGroup.Services.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +20,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
-//builder.Services.AddTransient<seed>();
-//builder.Services.AddTransient<seedAgain>();
+
+
+
+builder.Services.AddTransient<seed>();
+builder.Services.AddTransient<seedAgain>();
 
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
@@ -46,11 +50,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 builder.Services.AddIdentity<AppUser, IdentityRole>()
-  .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddAuthorization();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
+
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-  .AddCookie();
+
+await builder.Services.SeedRoles();
 
 /*builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

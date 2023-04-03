@@ -85,7 +85,7 @@ namespace WorkshopGroup.Controllers
       if (newUserResponse.Succeeded)
          await _userManager.AddToRoleAsync(newUser, UserRoles.User);
       
-      return RedirectToAction("Index", "Project");
+      return RedirectToAction("Login", "Account");
     }
 
     [HttpPost]

@@ -1,27 +1,33 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using RunGroopWebApp.Helpers;
-using RunGroopWebApp.ViewModels;
 using System.Diagnostics;
 using System.Globalization;
 using System.Net;
-using WorkshopGroup.Helpers;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
+using WorkshopGroup.Repository.Interfaces;
+using WorkshopGroup.Services;
+using WorkshopGroup.Services.Helpers;
 using WorkshopGroup.ViewModels;
 
 namespace WorkshopGroup.Controllers
 {
-  public class HomeController : Controller
+    public class HomeController : Controller
   {
     private readonly ILogger<HomeController> _logger;
     private readonly IClubRepository _clubRepository;
+    private readonly UserManager<AppUser> _userManager;
+    private readonly SignInManager<AppUser> _signInManager;
+    private readonly ILocationService _locationService;
 
-    public HomeController(ILogger<HomeController> logger, IClubRepository clubRepository)
+
+    public HomeController(ILogger<HomeController> logger, IClubRepository clubRepository, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ILocationService locationService)
     {
       _logger = logger;
       _clubRepository = clubRepository;
+      _userManager = userManager;
+      _signInManager = signInManager;
+      _locationService = locationService;
     }
 
     public async Task<IActionResult> Index()
@@ -31,7 +37,7 @@ namespace WorkshopGroup.Controllers
       //TryCatchFinally
       try
       {
-        string url = "https://ipinfo.io/172.56.225.177?token=aa971003411fa3";
+        string url = "https://ipinfo.io?token=aa971003411fa3";
         var info = new WebClient().DownloadString(url);
         ipInfo = JsonConvert.DeserializeObject<IPInfo>(info);
         RegionInfo myRI1 = new RegionInfo(ipInfo.Country);
@@ -57,7 +63,12 @@ namespace WorkshopGroup.Controllers
       return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult Register()
+    {
+        var response = new HomeUserCreateViewModel();
+        return View(response);
+    }
+        public IActionResult Privacy()
     {
       return View();
     }

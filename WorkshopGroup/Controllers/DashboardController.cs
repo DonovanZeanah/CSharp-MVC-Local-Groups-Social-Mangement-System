@@ -1,16 +1,16 @@
 ﻿using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WorkshopGroup.Interfaces;
 using WorkshopGroup.Models;
 using WorkshopGroup.ViewModels;
-using WorkshopGroup.Interfaces;
 using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow.PointsToAnalysis;
 using WorkshopGroup.Repository;
+using WorkshopGroup.Services;
+using WorkshopGroup.Repository.Interfaces;
 
 namespace WorkshopGroup.Controllers
 {
-  [Authorize]
+    [Authorize]
   public class DashboardController : Controller
   {
     private readonly IDashboardRepository _dashboardRepository;
