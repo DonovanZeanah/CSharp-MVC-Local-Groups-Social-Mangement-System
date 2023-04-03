@@ -16,6 +16,9 @@ using WorkshopGroup.Services.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+
 // Add services to the container.
 
 
@@ -23,8 +26,8 @@ builder.Services.AddControllersWithViews();
 
 
 
-builder.Services.AddTransient<seed>();
-builder.Services.AddTransient<seedAgain>();
+//builder.Services.AddTransient<Seed>();
+//builder.Services.AddTransient<SeedAgain>();
 
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
@@ -44,13 +47,28 @@ var tokenURL = builder.Services.Configure<IPInfo>(builder.Configuration.GetSecti
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-           .EnableSensitiveDataLogging();
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+            sqlServerOptions => sqlServerOptions.EnableRetryOnFailure())
+        .EnableSensitiveDataLogging();
 });
 
+/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure());
+        .EnableSensitiveDataLogging()
+        .EnableRetryOnFailure();
+});
+*/
 
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+/*builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddRoleManager<RoleManager<IdentityRole>>();*/
+
+//This will register the Identity services, RoleManager, and EntityFrameworkStores with the correct configurations.
+builder.Services.AddCustomIdentity();
+
 builder.Services.AddAuthorization();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -59,20 +77,34 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 
-await builder.Services.SeedRoles();
 
-/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
+
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
            .EnableSensitiveDataLogging();
 });
-*/
+
 
 // Register the Swagger generator
 /*builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API Title", Version = "v1" });
 });*/
+
+
+///
+///
+///
+
+//builder.Services.SeedRoles();
+
+///
+///
+///
+//await builder.Services.SeedUsers();
+await builder.Services.SeedRoles();
 
 builder.Services.AddSwaggerGen(c =>
 {

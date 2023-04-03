@@ -35,7 +35,7 @@ namespace WorkshopGroup.Controllers
           Points = (int?)user.Points,
           City = user.City,
           State = user.State,
-          Mileage = user.Mileage,
+          Level = user.Level,
           UserName = user.UserName,
           ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-4.jpg",
         };
@@ -50,7 +50,7 @@ namespace WorkshopGroup.Controllers
       var user = await _userRepository.GetUserById(id);
       if (user == null)
       {
-        return RedirectToAction("Index", "Users");
+        return RedirectToAction("Index", "User");
       }
 
       var userDetailViewModel = new UserDetailViewModel()
@@ -59,7 +59,7 @@ namespace WorkshopGroup.Controllers
         Points = (int?)user.Points,
         City = user.City,
         State = user.State,
-        Mileage = user.Mileage,
+        Level = user.Level,
         UserName = user.UserName,
         ProfileImageUrl = user.ProfileImageUrl ?? "/img/avatar-male-4.jpg",
       };
@@ -82,7 +82,7 @@ namespace WorkshopGroup.Controllers
         City = user.City,
         State = user.State,
         Points = (int?)user.Points,
-        Mileage = user.Mileage,
+        Level = user.Level,
         ProfileImageUrl = user.ProfileImageUrl,
       };
       return View(editMV);
@@ -131,7 +131,7 @@ namespace WorkshopGroup.Controllers
       user.City = editVM.City;
       user.State = editVM.State;
       user.Points = editVM.Points;
-      user.Mileage = editVM.Mileage;
+      user.Level = editVM.Level;
 
       await _userManager.UpdateAsync(user);
 

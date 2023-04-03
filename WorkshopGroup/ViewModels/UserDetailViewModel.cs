@@ -7,7 +7,7 @@ public class UserDetailViewModel
     public string Id { get; set; }
     public string UserName { get; set; }
     public int? Points { get; set; }
-    public int? Mileage { get; set; }
+    public int? Level { get; set; }
     public string? City { get; set; }
     public string? State { get; set; }
     public string ProfileImageUrl { get; set; }
@@ -17,6 +17,6 @@ public class UserDetailViewModel
         (string city, string state) => $"{city}, {state}",
         (string city, null) => city,
         (null, string state) => state,
-        (null, null) => "",
+        (null, null) => "Digital",
     };
 }

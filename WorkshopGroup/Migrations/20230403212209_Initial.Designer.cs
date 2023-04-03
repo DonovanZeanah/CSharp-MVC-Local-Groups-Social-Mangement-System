@@ -12,8 +12,8 @@ using WorkshopGroup.Data;
 namespace WorkshopGroup.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230222125405_reAddedIdtoAppUserAddINT")]
-    partial class reAddedIdtoAppUserAddINT
+    [Migration("20230403212209_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -318,7 +318,7 @@ namespace WorkshopGroup.Migrations
 
             modelBuilder.Entity("WorkshopGroup.Models.AppUser", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -339,14 +339,17 @@ namespace WorkshopGroup.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Level")
+                        .HasColumnType("int");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<int?>("Mileage")
-                        .HasColumnType("int");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(max)");
@@ -378,13 +381,10 @@ namespace WorkshopGroup.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.HasIndex("AddressId");
 
@@ -553,6 +553,27 @@ namespace WorkshopGroup.Migrations
                     b.ToTable("Projects");
                 });
 
+            modelBuilder.Entity("WorkshopGroup.Models.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("Ratings");
+                });
+
             modelBuilder.Entity("WorkshopGroup.Models.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -637,6 +658,9 @@ namespace WorkshopGroup.Migrations
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -835,6 +859,17 @@ namespace WorkshopGroup.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("WorkshopGroup.Models.Rating", b =>
+                {
+                    b.HasOne("WorkshopGroup.Models.Skill", "Skill")
+                        .WithMany("Ratings")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Skill");
+                });
+
             modelBuilder.Entity("WorkshopGroup.Models.Review", b =>
                 {
                     b.HasOne("WorkshopGroup.Models.AppUser", "AppUser")
@@ -944,6 +979,11 @@ namespace WorkshopGroup.Migrations
             modelBuilder.Entity("WorkshopGroup.Models.Reviewer", b =>
                 {
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("WorkshopGroup.Models.Skill", b =>
+                {
+                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("WorkshopGroup.Models.Tool", b =>
