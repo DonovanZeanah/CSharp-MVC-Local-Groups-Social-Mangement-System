@@ -1,5 +1,4 @@
-﻿using ContactWebModels;
-
+﻿
 namespace WorkshopGroup.Models
 {
   public class Category

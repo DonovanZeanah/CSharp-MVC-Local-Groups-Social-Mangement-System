@@ -1,4 +1,5 @@
-﻿namespace ContactWebModels
+﻿
+namespace WorkshopGroup.Models
 {
   public class Owner
   {

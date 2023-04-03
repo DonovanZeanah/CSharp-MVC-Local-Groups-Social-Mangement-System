@@ -9,16 +9,7 @@
     <DocumentationFile>bin\Debug\net6.0\WorkshopGroup.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="KingdomAngular\.vscode\**" />
-    <Compile Remove="KingdomAngular\node_modules\**" />
-    <Content Remove="KingdomAngular\.vscode\**" />
-    <Content Remove="KingdomAngular\node_modules\**" />
-    <EmbeddedResource Remove="KingdomAngular\.vscode\**" />
-    <EmbeddedResource Remove="KingdomAngular\node_modules\**" />
-    <None Remove="KingdomAngular\.vscode\**" />
-    <None Remove="KingdomAngular\node_modules\**" />
-  </ItemGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="CloudinaryDotNet" Version="1.20.0" />

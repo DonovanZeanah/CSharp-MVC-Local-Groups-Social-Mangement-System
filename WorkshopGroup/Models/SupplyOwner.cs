@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WorkshopGroup.Models;
 
-namespace ContactWebModels
+namespace WorkshopGroup.Models
 {
   public class SupplyOwner
   {

@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using WorkshopGroup.Data.Enum;
-using WorkshopGroup.Models;
-
-using WorkshopGroup.Data;
-using ContactWebModels;
+﻿using WorkshopGroup.Models;
 
 namespace WorkshopGroup.Data
 {
-  public class seedAgain : seed
+    public class seedAgain : seed
   {
     private readonly ApplicationDbContext dataContext;
     public seedAgain(ApplicationDbContext context)

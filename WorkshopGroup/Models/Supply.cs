@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata;
 using WorkshopGroup.Models;
 
-namespace ContactWebModels
+namespace WorkshopGroup.Models
 {
   public class Supply
   {
