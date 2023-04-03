@@ -19,8 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<seed>();
-builder.Services.AddTransient<seedAgain>();
+//builder.Services.AddTransient<seed>();
+//builder.Services.AddTransient<seedAgain>();
 
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
@@ -40,7 +40,6 @@ var tokenURL = builder.Services.Configure<IPInfo>(builder.Configuration.GetSecti
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
            .EnableSensitiveDataLogging();
 });
@@ -81,16 +80,12 @@ var app = builder.Build();
 // Enable Swagger middleware to serve generated Swagger as a JSON endpoint
 app.UseSwagger();
 
-// Enable Swagger UI middleware to serve Swagger UI at /swagger
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API Title v1");
-});
 
 
 
 
-seed.SeedData(app);
+
+//seed.SeedData(app);
 //seedAgain.SeedData(app);
 
 
@@ -105,9 +100,9 @@ seed.SeedData(app);
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-  app.UseExceptionHandler("/Home/Error");
-  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-  app.UseHsts();
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
@@ -117,6 +112,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+/*app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});*/
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
@@ -127,6 +128,12 @@ app.UseEndpoints(endpoints =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 
 
