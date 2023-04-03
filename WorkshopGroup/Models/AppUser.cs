@@ -14,9 +14,9 @@ namespace WorkshopGroup.Models
     //public string Id { get; set; }
     // key is string (guid) after IdentityUser implimented
     [Key]
-    //public string Id { get; set; }
-
+    public string Id { get; set; }
     public string? UserId { get; set; }
+    //public string? UserId { get; set; }
     public double? Points { get; set; }
     public int? Level { get; set; }
     public string? ProfileImageUrl { get; set; }

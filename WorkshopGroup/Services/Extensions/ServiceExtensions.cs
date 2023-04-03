@@ -16,6 +16,7 @@ namespace WorkshopGroup.Services.Extensions
 
             return services;
         }
+
         public static async Task SeedRoles(this IServiceCollection services)
         {
             using var serviceProvider = services.BuildServiceProvider();
@@ -43,31 +44,36 @@ namespace WorkshopGroup.Services.Extensions
                 var role = new IdentityRole(UserRoles.Moderator);
                 await roleManager.CreateAsync(role);
             }
+
             // Seed Leader role
             if (!await roleManager.RoleExistsAsync(UserRoles.Leader))
             {
                 var role = new IdentityRole(UserRoles.Leader);
                 await roleManager.CreateAsync(role);
             }
+
             // Seed Guru role
             if (!await roleManager.RoleExistsAsync(UserRoles.Guru))
             {
                 var role = new IdentityRole(UserRoles.Guru);
                 await roleManager.CreateAsync(role);
             }
-///
 
+            ///
             // Seed admin and moderator users
             await SeedUsers(scope.ServiceProvider);
+
         }
 
-        private static async Task SeedUsers(IServiceProvider serviceProvider)
+        public static async Task SeedUsers(IServiceProvider serviceProvider)
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
 
             // Seed 1 admin user
             var adminUser = new AppUser
             {
+                Id = "1",
+                UserId = "1",
                 UserName = "admin@example.com",
                 Email = "admin@example.com"
             };
@@ -78,10 +84,12 @@ namespace WorkshopGroup.Services.Extensions
             }
 
             // Seed 3 moderator users
-            for (int i = 1; i <= 3; i++)
+            for (int i = 2; i <= 5; i++)
             {
                 var moderatorUser = new AppUser
                 {
+                    Id = i.ToString(),
+                    UserId = i.ToString(),
                     UserName = $"moderator{i}@example.com",
                     Email = $"moderator{i}@example.com"
                 };
@@ -108,7 +116,7 @@ namespace WorkshopGroup.Services.Extensions
             });
         }
 
-
-/////
     }
+
+    /////
 }

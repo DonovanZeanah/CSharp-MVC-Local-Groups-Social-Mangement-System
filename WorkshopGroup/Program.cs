@@ -45,14 +45,13 @@ builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 var tokenURL = builder.Services.Configure<IPInfo>(builder.Configuration.GetSection("IPInfoSettings"));
 
-
-/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
             sqlServerOptions => sqlServerOptions.EnableRetryOnFailure())
         .EnableSensitiveDataLogging();
 });
-*/
+
 /*builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -79,16 +78,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 
 
-///
-///
-///
 
-//builder.Services.SeedRoles().GetAwaiter().GetResult();
-
-///
-///
-///
-//await builder.Services.SeedRoles();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
@@ -102,6 +92,19 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API Title", Version = "v1" });
 });*/
+
+
+///
+///
+///
+
+//builder.Services.SeedRoles();
+
+///
+///
+///
+//await builder.Services.SeedUsers();
+await builder.Services.SeedRoles();
 
 builder.Services.AddSwaggerGen(c =>
 {
