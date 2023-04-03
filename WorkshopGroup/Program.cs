@@ -46,13 +46,13 @@ builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(
 var tokenURL = builder.Services.Configure<IPInfo>(builder.Configuration.GetSection("IPInfoSettings"));
 
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
             sqlServerOptions => sqlServerOptions.EnableRetryOnFailure())
         .EnableSensitiveDataLogging();
 });
-
+*/
 /*builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -83,19 +83,19 @@ builder.Services.AddSession();
 ///
 ///
 
-builder.Services.SeedRoles().GetAwaiter().GetResult();
+//builder.Services.SeedRoles().GetAwaiter().GetResult();
 
 ///
 ///
 ///
 //await builder.Services.SeedRoles();
 
-/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
            .EnableSensitiveDataLogging();
 });
-*/
+
 
 // Register the Swagger generator
 /*builder.Services.AddSwaggerGen(c =>
