@@ -6,7 +6,7 @@ using WorkshopGroup.Data;
 
 namespace WorkshopGroup.Data
 {
-  public class seed
+  public class Seed
   {
     public static void SeedData(IApplicationBuilder applicationBuilder)
     {

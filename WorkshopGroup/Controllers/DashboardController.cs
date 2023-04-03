@@ -27,7 +27,7 @@ namespace WorkshopGroup.Controllers
     {
       user.Id = editVM.Id;
       user.Points = editVM.Points;
-      user.Mileage = editVM.Mileage;
+      user.Level = editVM.Level;
       user.ProfileImageUrl = photoResult.Url.ToString();
       user.City = editVM.City;
       user.State = editVM.State;
@@ -55,7 +55,7 @@ namespace WorkshopGroup.Controllers
       {
         Id = curUserId,
         Points = (int?)user.Points,
-        Mileage = user.Mileage,
+        Level = user.Level,
         ProfileImageUrl = user.ProfileImageUrl,
         City = user.City,
         State = user.State,

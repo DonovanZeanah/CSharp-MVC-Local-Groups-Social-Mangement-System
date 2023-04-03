@@ -1,8 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿
 
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
-
+@using Microsoft.AspNetCore.Identity;
 @{
   var currentUser = await UserManager.GetUserAsync(User);
 }
@@ -156,7 +156,7 @@
                                        asp-action="Index">Home</a>
                                 </li>
                                 <li>
-                                    <a asp-area="" asp-controller="Users"
+                                    <a asp-area="" asp-controller="User"
                                        asp-action="Index">Find Runners Near You</a>
                                 </li>
                                 <li>
