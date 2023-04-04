@@ -317,6 +317,7 @@ namespace WorkshopGroup.Migrations
             modelBuilder.Entity("WorkshopGroup.Models.AppUser", b =>
                 {
                     b.Property<string>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
