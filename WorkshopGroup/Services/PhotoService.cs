@@ -2,6 +2,7 @@
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
 using WorkshopGroup.Services.Helpers;
+using WorkshopGroup.Services.interfaces;
 
 namespace WorkshopGroup.Services
 {

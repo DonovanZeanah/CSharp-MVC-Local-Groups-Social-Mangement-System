@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using WorkshopGroup.ViewModels;
 using WorkshopGroup.Models;
 using WorkshopGroup.Models;
-using WorkshopGroup.Services;
 using WorkshopGroup.Repository.Interfaces;
+using WorkshopGroup.Services.interfaces;
 
 namespace WorkshopGroup.Controllers
 {

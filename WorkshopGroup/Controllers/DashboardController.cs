@@ -5,8 +5,8 @@ using WorkshopGroup.Models;
 using WorkshopGroup.ViewModels;
 using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow.PointsToAnalysis;
 using WorkshopGroup.Repository;
-using WorkshopGroup.Services;
 using WorkshopGroup.Repository.Interfaces;
+using WorkshopGroup.Services.interfaces;
 
 namespace WorkshopGroup.Controllers
 {

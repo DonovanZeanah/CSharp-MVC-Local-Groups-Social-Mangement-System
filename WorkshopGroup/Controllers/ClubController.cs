@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkshopGroup.Data;
 using WorkshopGroup.Models;
 using WorkshopGroup.Repository.Interfaces;
-using WorkshopGroup.Services;
+using WorkshopGroup.Services.interfaces;
 using WorkshopGroup.ViewModels;
 
 namespace WorkshopGroup.Controllers

@@ -2,21 +2,24 @@
 using Microsoft.AspNetCore.Mvc;
 using WorkshopGroup.Data;
 using WorkshopGroup.Models;
+using WorkshopGroup.Services.interfaces;
 using WorkshopGroup.ViewModels;
 
 namespace WorkshopGroup.Controllers
 {
-  public class AccountController : Controller
+    public class AccountController : Controller
   {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly ApplicationDbContext _context;
+    //private readonly IRegisterUserService _registerUserService;
 
     public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ApplicationDbContext context)
     {
       _userManager = userManager;
       _signInManager = signInManager;
       _context = context;
+      //_registerUserService = registerUserService;
     }
 
 
@@ -64,31 +67,52 @@ namespace WorkshopGroup.Controllers
       var response = new RegisterViewModel();
       return View(response);
     }
-    // results in a post, comes in tandem with the above git, both named "login"
-    [HttpPost]
-    public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
-    {
-      if (!ModelState.IsValid) return View(registerViewModel);
+        // results in a post, comes in tandem with the above git, both named "login"
 
-      var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
-      if (user != null)
-      {
-        TempData["Error"] = "Email already in use";
-        return View(registerViewModel);
-      }
-       var newUser = new AppUser()
-      {
-        Email = registerViewModel.EmailAddress,
-        UserName = registerViewModel.EmailAddress
-      };
-      var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
-      if (newUserResponse.Succeeded)
-         await _userManager.AddToRoleAsync(newUser, UserRoles.User);
-      
-      return RedirectToAction("Login", "Account");
-    }
+        /*[HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            if (!ModelState.IsValid) return View(registerViewModel);
 
-    [HttpPost]
+            var result = await _registerUserService.RegisterUserAsync(registerViewModel.EmailAddress, registerViewModel.Password);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.ToString());
+            }
+
+            return View(registerViewModel);
+        }*/
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            if (!ModelState.IsValid) return View(registerViewModel);
+
+            var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "Email already in use";
+                return View(registerViewModel);
+            }
+            var newUser = new AppUser()
+            {
+                Email = registerViewModel.EmailAddress,
+                UserName = registerViewModel.EmailAddress
+            };
+            var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
+            if (newUserResponse.Succeeded)
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
     public async Task<IActionResult> Logout()
     {
       await _signInManager.SignOutAsync();

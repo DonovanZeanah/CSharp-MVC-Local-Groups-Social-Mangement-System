@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WorkshopGroup.Data;
 using WorkshopGroup.Models;
-using WorkshopGroup.Services;
+using WorkshopGroup.Services.interfaces;
 
 namespace RunGroopWebApp.Services
 {
