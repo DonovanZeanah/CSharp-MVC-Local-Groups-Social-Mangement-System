@@ -26,8 +26,9 @@ builder.Services.AddControllersWithViews();
 
 
 
-//builder.Services.AddTransient<Seed>();
-//builder.Services.AddTransient<SeedAgain>();
+builder.Services.AddTransient<Seed>();
+builder.Services.AddTransient<SeedAgain>();
+builder.Services.AddTransient<DataSeeder>();
 
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
@@ -67,12 +68,50 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     .AddRoleManager<RoleManager<IdentityRole>>();*/
 
 //This will register the Identity services, RoleManager, and EntityFrameworkStores with the correct configurations.
-builder.Services.AddCustomIdentity();
+/*builder.Services.AddCustomIdentity();
 
 builder.Services.AddAuthorization();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();*/
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequiredLength = 8;
+    })
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = false;
+    options.User.RequireUniqueEmail = true;
+    options.Lockout.MaxFailedAccessAttempts = 3;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(UserRoles.Admin, policy => policy.RequireRole(UserRoles.Admin));
+    options.AddPolicy(UserRoles.Leader, policy => policy.RequireRole(UserRoles.Leader));
+    options.AddPolicy(UserRoles.Moderator, policy => policy.RequireRole(UserRoles.Moderator));
+    options.AddPolicy(UserRoles.Guru, policy => policy.RequireRole(UserRoles.Guru));
+    options.AddPolicy(UserRoles.User, policy => policy.RequireRole(UserRoles.User));
+});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
+
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
@@ -98,13 +137,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 ///
 ///
 
-//builder.Services.SeedRoles();
+//Use once for setup while AppUser Key is int, then comment and set
+//as AppUser Key as UserId string. Migrate.
 
 ///
 ///
 ///
-//await builder.Services.SeedUsers();
-await builder.Services.SeedRoles();
+//
+//await builder.Services.SeedRoles();
 
 builder.Services.AddSwaggerGen(c =>
 {

@@ -24,23 +24,23 @@
     </div>
     <div class="form-group">
         <label asp-for="ProjectCategory">ProjectCategory</label>
-        <select asp-for="ProjectCategory" asp-items="@Html.GetEnumSelectList<ProjectCategory>()">
+        <select asp-for="ProjectCategory" asp-items="Html.GetEnumSelectList<ProjectCategory>()">
             <option>--Select--</option>
         </select>
         <span asp-validation-for="ProjectCategory" class="text-danger">    </span>
     </div>
     <div class="form-group">
-        <label asp-for="Address.Street">    Street</label></label>
+        <label asp-for="Address.Street">    Street</label>
         <input asp-for="Address.Street" class="form-control" placeholder="Address ">
         <span asp-validation-for="Address" class="text-danger">    </span>
     </div>
     <div class="form-group">
-        <label asp-for="Address.City">    City</label></label>
+        <label asp-for="Address.City">    City</label>
         <input asp-for="Address.City" class="form-control" placeholder="City ">
         <span asp-validation-for="Address.Street" class="text-danger">    </span>
     </div>
     <div class="form-group">
-        <label asp-for="Address.State">    State</label></label>
+        <label asp-for="Address.State">    State</label>
         <input asp-for="Address.State" class="form-control" placeholder="State ">
         <span asp-validation-for="Address.State" class="text-danger">    </span>
     </div>

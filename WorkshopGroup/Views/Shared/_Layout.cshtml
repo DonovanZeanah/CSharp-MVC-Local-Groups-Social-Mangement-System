@@ -1,7 +1,7 @@
 ﻿
 
-@inject SignInManager<AppUser> SignInManager
-@inject UserManager<AppUser> UserManager
+@inject SignInManager<AppUser> SignInManager;
+@inject UserManager<AppUser> UserManager;
 @using Microsoft.AspNetCore.Identity;
 @{
   var currentUser = await UserManager.GetUserAsync(User);
@@ -14,20 +14,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Hobby Groups</title>
     <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
-    @*<link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/entypo.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/socicon.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/RunGroopWebApp.styles.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/RunGroopWebApp.styles.css" asp-append-version="true" />
 
-    <script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
+    @*<script src="https://kit.fontawesome.com/8aa18c8793.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-
+*@
 
     <!-- From Angular -->
     <script src="~/js/angularApp.js"></script>
 
     <!-- Polyfill(s) for older browsers -->
-    <script src="/node_modules/core-js/client/shim.min.js"></script>
+@*    <script src="/node_modules/core-js/client/shim.min.js"></script>
 
     <script src="/node_modules/zone.js/dist/zone.js"></script>
     <script src="/node_modules/systemjs/dist/system.src.js"></script>
@@ -35,7 +35,7 @@
     <script src="~/systemjs.config.js"></script>
     <script>
       System.import('app/main.js').catch(function(err){ console.error(err); });
-    </script>
+    </script>*@
 </head>
 <body ng-app="myAngularApp">
     <div class="navbar-container">
@@ -161,7 +161,7 @@
                                 </li>
                                 <li>
                                     <a asp-area="" asp-controller="Club"
-                                       asp-action="Index">Find WorkShop Clubs Near You</a>
+                                       asp-action="Index">Find Hobby Groups Near You</a>
                                 </li>
                                 <li>
                                     <a asp-area="" asp-controller="Project"
@@ -185,7 +185,7 @@
                         </div>
                         <!--end of col-->
                         <div class="col-6 col-lg-3">
-                            <h6>Race Directory</h6>
+                            <h6>Project Directory</h6>
                             <ul class="list-unstyled">
                                 <li>
                                     <a href="#">Find Projects By City</a>
@@ -200,13 +200,13 @@
                             <h6>Social</h6>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="https://www.youtube.com/channel/UCU_Pr6r85LeSe62S65BLV2g">Youtube</a>
+                                    <a href="https://www.youtube.com/tba">Youtube</a>
                                 </li>
                                 <li>
-                                    <a href="https://www.facebook.com/RunGroop-101353239237822">Facebook</a>
+                                    <a href="https://www.facebook.com/Zeanah">Facebook</a>
                                 </li>
                                 <li>
-                                    <a href="https://twitter.com/rungroop">Twitter</a>
+                                    <a href="https://twitter.com/tba">Twitter</a>
                                 </li>
                                 <li>
                                     <a href="/blog">Blog</a>
@@ -223,8 +223,7 @@
         </div>
         <!--end of container-->
     </footer>
-    </div>
-    <script src="~/js/jquery.min.js"></script>
+<script src="~/js/jquery.min.js"></script>
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/theme.js"></script>
     <script src="~/js/custom.js"></script>

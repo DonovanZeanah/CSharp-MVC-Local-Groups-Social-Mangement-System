@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WorkshopGroup.Data;
 using WorkshopGroup.Models;
 using WorkshopGroup.ViewModels;
@@ -32,8 +33,7 @@ namespace WorkshopGroup.Controllers
     {
       if (!ModelState.IsValid) return View(loginViewModel);
 
-      var user = await _userManager.FindByEmailAsync(loginViewModel.EmailAddress);
-      if (user != null)
+      var user = await _userManager.Users.SingleOrDefaultAsync(u => u.Email == loginViewModel.EmailAddress); if (user != null)
       {
         var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
         if (passwordCheck)
@@ -48,11 +48,11 @@ namespace WorkshopGroup.Controllers
         //logic if pass fails, todo: impliment a loginViewModel.Password isCorrect vice tempdata
 
         //Pass Incorrect.
-        TempData["Error"] = "No street creds, sorry";
+        TempData["Error"] = "Pass Invalid";
         return View(loginViewModel);
       }
       //User Incorrect.
-      TempData["Error"] = "No Street creds, sorry";
+      TempData["Error"] = "User Invalid";
       return View(loginViewModel);
 
 

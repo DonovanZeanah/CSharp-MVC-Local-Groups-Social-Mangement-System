@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using WorkshopGroup.Data.Enum;
 using WorkshopGroup.Models;
-
 using WorkshopGroup.Data;
 using ContactWebModels;
 
