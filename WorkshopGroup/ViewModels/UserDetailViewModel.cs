@@ -20,5 +20,4 @@ public class UserDetailViewModel
         (null, null) => "",
     };
 
-    public int? Level { get; internal set; }
 }

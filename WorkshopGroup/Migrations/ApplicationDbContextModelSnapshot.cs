@@ -338,12 +338,11 @@ namespace WorkshopGroup.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-<<<<<<< HEAD
-=======
+
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> master
+
                     b.Property<int?>("Level")
                         .HasColumnType("int");
 

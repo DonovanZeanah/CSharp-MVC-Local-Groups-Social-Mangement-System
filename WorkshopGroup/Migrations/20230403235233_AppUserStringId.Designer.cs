@@ -352,12 +352,9 @@ namespace WorkshopGroup.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-<<<<<<< HEAD:WorkshopGroup/Migrations/20230316011702_skills-added.Designer.cs
                     b.Property<int?>("Level")
                         .HasColumnType("int");
 
-=======
->>>>>>> master:WorkshopGroup/Migrations/20230403235233_AppUserStringId.Designer.cs
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(max)");
 

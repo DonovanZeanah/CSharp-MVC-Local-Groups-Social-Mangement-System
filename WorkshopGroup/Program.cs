@@ -29,6 +29,7 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddTransient<seed>();
 //builder.Services.AddTransient<seedAgain>();
 
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
