@@ -343,7 +343,7 @@ namespace WorkshopGroup.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int?>("Mileage")
+                    b.Property<int?>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("NormalizedEmail")

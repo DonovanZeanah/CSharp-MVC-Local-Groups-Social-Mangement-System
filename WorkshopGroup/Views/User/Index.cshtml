@@ -16,7 +16,7 @@
                                         <div class="media-body">
                                             <span class="h6 mb-0">@user.UserName</span>
                                         </div>
-                                        <p class="card-text">Mileage: @user.Mileage</p>
+                                        <p class="card-text">Level: @user.Level</p>
                                         <p class="card-text">Points: @user.Points</p>
                                     </div>
                                 </th>
@@ -27,10 +27,10 @@
                                
 
                                 @{
-                                    var mileage = user.Mileage == null ? "?" : user.Mileage.ToString();
-                                    var points = user.Points == null ? "?" : user.Mileage.ToString();
+                                    var level = user.Level == null ? "?" : user.Level.ToString();
+                                    var points = user.Points == null ? "?" : user.Level.ToString();
                                 }
-                                <td>@mileage mile at @points Pph</td>
+                                <td>@level mile at @points Pph</td>
                                 <td><i class="icon-location"></i> @user.Location</td>
                               </td>
                               @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))

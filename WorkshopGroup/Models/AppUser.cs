@@ -18,7 +18,7 @@ namespace WorkshopGroup.Models
 
     public string? UserId { get; set; }
     public double? Points { get; set; }
-    public int? Mileage { get; set; }
+    public int? Level { get; set; }
     public string? ProfileImageUrl { get; set; }
     public string? City { get; set; }
     public string? State { get; set; }
