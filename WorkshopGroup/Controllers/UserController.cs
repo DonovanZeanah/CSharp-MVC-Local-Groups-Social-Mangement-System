@@ -50,7 +50,7 @@ namespace WorkshopGroup.Controllers
       var user = await _userRepository.GetUserById(id);
       if (user == null)
       {
-        return RedirectToAction("Index", "Users");
+        return RedirectToAction("Index", "User");
       }
 
       var userDetailViewModel = new UserDetailViewModel()

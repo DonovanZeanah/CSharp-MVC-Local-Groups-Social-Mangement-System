@@ -16,6 +16,9 @@ using WorkshopGroup.Services.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+
 // Add services to the container.
 
 
@@ -49,30 +52,45 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddAuthorization();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
+
 
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 
 //await builder.Services.SeedRoles();
 
-/*builder.Services.AddDbContext<ApplicationDbContext>(options =>
+
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
            .EnableSensitiveDataLogging();
 });
-*/
+
 
 // Register the Swagger generator
 /*builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API Title", Version = "v1" });
 });*/
+
+
+///
+///
+///
+
+//Use once for setup while AppUser Key is int, then comment and set
+//as AppUser Key as UserId string. Migrate.
+
+///
+///
+///
+//
+//await builder.Services.SeedRoles();
 
 builder.Services.AddSwaggerGen(c =>
 {

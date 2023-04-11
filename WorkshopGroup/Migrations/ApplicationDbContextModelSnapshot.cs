@@ -316,7 +316,8 @@ namespace WorkshopGroup.Migrations
 
             modelBuilder.Entity("WorkshopGroup.Models.AppUser", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("UserId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -337,6 +338,12 @@ namespace WorkshopGroup.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+<<<<<<< HEAD
+=======
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+>>>>>>> master
                     b.Property<int?>("Level")
                         .HasColumnType("int");
 
@@ -376,13 +383,10 @@ namespace WorkshopGroup.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.HasIndex("AddressId");
 
