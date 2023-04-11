@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using RunGroopWebApp.Services;
 using System.Configuration;
 using System.Reflection;
 using WorkshopGroup.Data;

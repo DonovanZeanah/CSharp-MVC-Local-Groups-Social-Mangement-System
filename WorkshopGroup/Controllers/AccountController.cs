@@ -51,11 +51,11 @@ namespace WorkshopGroup.Controllers
         //logic if pass fails, todo: impliment a loginViewModel.Password isCorrect vice tempdata
 
         //Pass Incorrect.
-        TempData["Error"] = "No street creds, sorry";
+        TempData["Error"] = "Pass Fail";
         return View(loginViewModel);
       }
       //User Incorrect.
-      TempData["Error"] = "No Street creds, sorry";
+      TempData["Error"] = "UserLogin Fail";
       return View(loginViewModel);
 
 

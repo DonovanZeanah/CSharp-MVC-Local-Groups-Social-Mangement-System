@@ -58,18 +58,22 @@ namespace WorkshopGroup.Controllers
                 }
                 else
                 {
-                    homeViewModel.Clubs = null;
+                    homeViewModel.City = "Tuscaloosa";
+                    homeViewModel.State = "Alabama";
+                    homeViewModel.Clubs = new List<Club>();
+                    //homeViewModel.Clubs = null;
                 }
-
                 return View(homeViewModel);
 
             }
             catch (Exception ex)
             {
-                homeViewModel.Clubs = null;
+                homeViewModel.City = "Tuscaloosa";
+                homeViewModel.State = "Alabama";
+                homeViewModel.Clubs = new List<Club>();
+                //homeViewModel.Clubs = null;
             }
-
-            return View();
+            return View(homeViewModel);
         }
 
         /*[HttpPost]

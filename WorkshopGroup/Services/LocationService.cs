@@ -3,7 +3,7 @@ using WorkshopGroup.Data;
 using WorkshopGroup.Models;
 using WorkshopGroup.Services.interfaces;
 
-namespace RunGroopWebApp.Services
+namespace WorkshopGroup.Services
 {
     public class LocationService : ILocationService
     {
