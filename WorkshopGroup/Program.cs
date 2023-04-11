@@ -23,8 +23,8 @@ builder.Services.AddControllersWithViews();
 
 
 
-builder.Services.AddTransient<seed>();
-builder.Services.AddTransient<seedAgain>();
+//builder.Services.AddTransient<seed>();
+//builder.Services.AddTransient<seedAgain>();
 
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
@@ -59,7 +59,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 
-await builder.Services.SeedRoles();
+//await builder.Services.SeedRoles();
 
 /*builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

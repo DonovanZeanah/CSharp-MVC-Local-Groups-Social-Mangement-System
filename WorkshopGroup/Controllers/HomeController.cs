@@ -51,16 +51,22 @@ namespace WorkshopGroup.Controllers
         }
         else
         {
-          homeViewModel.Clubs = null;
-        }
+            homeViewModel.City = "default city";
+            homeViewModel.State = "default state";
+            homeViewModel.Clubs = new List<Club>();
+                    //homeViewModel.Clubs = null;
+                }
         return View(homeViewModel);
 
       }
       catch (Exception ex)
       {
-        homeViewModel.Clubs = null;
+          homeViewModel.City = "Tuscaloosa";
+          homeViewModel.State = "Alabama";
+                homeViewModel.Clubs = new List<Club>();
+                //homeViewModel.Clubs = null;
       }
-      return View();
+      return View(homeViewModel);
     }
 
     public IActionResult Register()
@@ -68,7 +74,8 @@ namespace WorkshopGroup.Controllers
         var response = new HomeUserCreateViewModel();
         return View(response);
     }
-        public IActionResult Privacy()
+
+    public IActionResult Privacy()
     {
       return View();
     }
